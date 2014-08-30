@@ -1,0 +1,157 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 31, Issue 18
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. Re: Kernel Linux updating (Mylene Josserand)
+   2. Re: kernel crash and dabt_svc (Mohammed Shafi)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Fri, 28 Jun 2013 11:50:08 +0200
+From: "Mylene Josserand" <Mylene.Josserand@navocap.com>
+Subject: Re: Kernel Linux updating
+To: "Alexandru Juncu" <alexj@rosedu.org>
+Cc: kernelnewbies <kernelnewbies@kernelnewbies.org>
+Message-ID:
+	<CA78C307B8F06747967D122FC656B153986502@SERVEUR0.nvp.local>
+Content-Type: text/plain;	charset="utf-8"
+
+Thanks for the advices.
+
+Yes, I agree with you about keeping kernel updates is better. But I am 
+new to my company and they did not update the kernel so they are "stuck" 
+with the old 2.6.32 kernel.
+
+So, here I am ! Asking questions to know how it would be the nice way to 
+update it :)
+
+
+Myl?ne
+
+
+Le 28/06/2013 11:36, Alexandru Juncu a ?crit :
+> Though the kernel is the heart of the operating system, it's not the
+> only thing that makes the things go. Putting in a new kernel, isn't
+> necessarily the answer to all the problems of a system.
+> Because the userspace utilities are just as important, and you need to
+> keep them too up to date. Because some versions of a (core) program
+> might use things that were supported in a version, but not anymore
+> (this shouldn't happen in a perfect world, but since we're living in
+> real life, this could happen).
+>
+> As a best practice, I find that you should update your system
+> regularly. Updating from version 1 to 2, then to 3 after a couple of
+> months, then to 4 when that is release usually goes a lot smoother
+> than going from 1 to 4. Reinstalling the entire distribution would be
+> a better option, but not always possible in production.
+>
+> You could just try each version (starting with the LTS ones) until you
+> find one that works for you.
+>
+> On 28 June 2013 12:23, Mylene Josserand<Mylene.Josserand@navocap.com>  wrote:
+>> okay ! Thank you for the explanation, Alexandru.
+>> I see it more clearly :)
+>>
+>> What I really want ? Hum, it is for a production purpose.
+>> We already use a kernel but it a 2.6.32.59 version.
+>>
+>> We have some problems and we thought to update it. I had updated it to a
+>> 3.8 kernel but, of what you say, I should have updated it to a longterm
+>> version. Which one should I use ?
+>> In the links you gave me, I see that the 2.6.32 will become EOL in 2014
+>> and 2.6.34 and 3.0 in 2013. The 3.2 will become an EOL in 2016. Should I
+>> update to this one ?
+>>
+>> And we encountered some problems (about CAN controller to be precise).
+>> In the CAN mailist, Luka Rahne has the same problem has ours with the
+>> 3.0.3 kernel. He tested the 3.0.81 and the problem seems to be gone. So,
+>> also, I wanted to know if the possibly fix between 3.0.3 and 3.0.81
+>> would have been spreaded to other kernels ? other long term ? stable ?
+>>
+>> Thank you again !
+>>
+>>
+>> Myl?ne
+>>
+>>
+>>
+>> Le 28/06/2013 10:51, Alexandru Juncu a ?crit :
+>>> On 28 June 2013 11:37, Mylene Josserand<Mylene.Josserand@navocap.com>   wrote:
+>>>> Hi everyone,
+>>>>
+>>>>
+>>>> I would like to know how the Linux Kernel are updated.
+>>>> I know that there is the long term kernels, the last stables and the
+>>>> mainline.
+>>>> First, what is the real difference between stable and longterm ?
+>>>>
+>>>> I see in the Linux Kernel website that the date of the long term (and
+>>>> the revision number) is changing so I was thinking that there are some
+>>>> updates on it, right ?
+>>>>
+>>>> For example, when an important bug has been fixed, is it fixed in the
+>>>> new release kernel only ? Or is it applied on old kernels ? Only the
+>>>> long term ? All ?
+>>>>
+>>>> So if I am using the long term 3.4.49 for example (and the current is
+>>>> 3.4.51), I can just update the 3.4.49 to get the important bugs fix that
+>>>> have been fixed in the new release (so 3.9.8 right now ?).
+>>>>
+>>>>
+>>>> And if you have some documentation about it, it would be nice !
+>>>>
+>>>>
+>>>> Thank you in advance !
+>>>
+>>> Hello!
+>>>
+>>> kernel.org [0] is your friend. There is a page explaining the release types [1].
+>>>
+>>> In short, Malnline is the newest but somewhat unstable. It's where
+>>> everything is tested with new features. It compiles, but it not real
+>>> world tested.
+>>> When a version is battle tested and does good without doing bad in the
+>>> real world, it's called stable.
+>>>
+>>> The long term versions are ones that are considered milestones. Those
+>>> kernels could be used in production for many years because they will
+>>> be patched with security updates, but nothing major will change in
+>>> their architecture, so the administrator won't have to worry that if
+>>> he applies a patch it will break the production server.
+>>>
+>>> Hopefully I'm not offending anyone with this comparison, but think
+>>> about it as the Ubuntu versions, if you are familiar with them. You
+>>> have a new release every 6 months, that has new features, That's
+>>> stable. Like 13.04. But once every two years they have a long term
+>>> support version (like 10.04, 12.04, 14.04) that you can rely on for
+>>> many years. They will be patched for vulnerabilities (ex. 12.04.1
+>>> probably has secutiy patches like 12.10, but won't have it's new
+>>> features).
+>>>
+>>> So now it's a matter of what you want? Do you want to use it in
+>>> production? Maybe you would want a tong term version.  Want to use it
+>>> for your own use? Probably you want the stable. Want to develop new
+>>> features? You might go for the mainline.
+>>>
+>>> Hope it helps.
+>>>
+>>> [0] https://www.kernel.org/
+>>> [1] https://www.kernel.org/category/releases.

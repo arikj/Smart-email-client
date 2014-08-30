@@ -1,0 +1,91 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 32, Issue 13
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. Re: makefile (Srinivas Ganji)
+   2. Use netlink to achieve user mode and kernel interaction (???)
+   3. how to intercept system calls (???)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Wed, 10 Jul 2013 13:32:59 +0530
+From: Srinivas Ganji <srinivasganji.kernel@gmail.com>
+Subject: Re: makefile
+To: David kiarie <davidkiarie4@gmail.com>
+Cc: kernelnewbies@kernelnewbies.org
+Message-ID:
+	<CAMVKQhVqj06mxnxGFk78F1a1-yGMCyeJuzRh0BFO1eemnk2JJg@mail.gmail.com>
+Content-Type: text/plain; charset="iso-8859-1"
+
+Hi David,
+
+As Rajat said, we need to give TAB space before an executable command in
+the Makefile. However, here is the simple Makefile, for your reference.
+
+KDIR:=/lib/modules/$(shell uname -r)/build
+
+obj-m:=hello.o
+
+default:
+$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules
+
+I hope this helps to you.
+
+Regards,
+Srinivas
+
+
+
+On Tue, Jul 2, 2013 at 6:37 PM, David kiarie <davidkiarie4@gmail.com> wrote:
+
+> Hi everybody,
+> I currently started learning how to write Linux drivers.I am following
+> Linux Device Drivers Third Edition.
+> I have everything set right but the makefile provided seem not to work.I
+> am familiar with makefiles but the kernel build system confuses me
+> Here is the makefile:
+>
+> # If KERNELRELEASE is defined, we've been invoked from the
+> # kernel build system and can use its language.
+> ifneq ($(KERNELRELEASE),)
+> obj-m := hello.o
+> # Otherwise we were called directly from the command
+> # line; invoke the kernel build system.
+> else
+> KERNELDIR ?= /lib/modules/$(shell uname -r)/build
+> PWD := $(shell pwd)
+> default:
+> $(MAKE) -C $(KERNELDIR) M=$(PWD) modules
+> endif
+> It give the following output when I run make :
+>
+> make: Nothing to be done for `default'.
+>
+>
+> _______________________________________________
+> Kernelnewbies mailing list
+> Kernelnewbies@kernelnewbies.org
+> http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+>
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130710/b4749ea9/attachment-0001.

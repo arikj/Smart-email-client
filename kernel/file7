@@ -1,0 +1,170 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 32, Issue 46
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. Which repo should I clone? (Dolan Murvihill)
+   2. Re: Which repo should I clone? (Daniel Baluta)
+   3. Re: Which repo should I clone? (Alexandru Juncu)
+   4. Notifier Chains (PV Juliet)
+   5. Re: Which repo should I clone? (Valdis.Kletnieks@vt.edu)
+   6. Why use "." in the struct in this way? (lx)
+   7. Re: Why use "." in the struct in this way? (Prashant Shah)
+   8. Re: Why use "." in the struct in this way? (Alexandru Juncu)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Sun, 28 Jul 2013 20:39:41 -0700
+From: Dolan Murvihill <dmurvihill@gmail.com>
+Subject: Which repo should I clone?
+To: kernelnewbies@kernelnewbies.org
+Message-ID: <51F5E3FD.9010005@gmail.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+
+Hello,
+
+I've been able to figure out from all the various HOWTOs about the 
+different kernel trees (main development, -next, -stable, the subsystem 
+trees, etc.) and I see where the files and patches are archived on 
+kernel.org, but I haven't been able to find the actual git repos that I 
+need to clone to work on the main kernel, or any of the others. Can 
+someone please elaborate on exactly where each of these are stored so 
+that I can more easily translate this conceptual knowledge into the 
+actual git commands I have to run to make it work?
+
+Thanks,
+Dolan
+
+
+
+------------------------------
+
+Message: 2
+Date: Mon, 29 Jul 2013 10:21:21 +0300
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Subject: Re: Which repo should I clone?
+To: Dolan Murvihill <dmurvihill@gmail.com>
+Cc: kernelnewbies@kernelnewbies.org
+Message-ID:
+	<CAEnQRZDZ=nXia1oDF=ZeCn1YMjRiHekjd2CrFuictRWcUJTz5g@mail.gmail.com>
+Content-Type: text/plain; charset=ISO-8859-1
+
+On Mon, Jul 29, 2013 at 6:39 AM, Dolan Murvihill <dmurvihill@gmail.com> wrote:
+> Hello,
+>
+> I've been able to figure out from all the various HOWTOs about the
+> different kernel trees (main development, -next, -stable, the subsystem
+> trees, etc.) and I see where the files and patches are archived on
+> kernel.org, but I haven't been able to find the actual git repos that I
+> need to clone to work on the main kernel, or any of the others. Can
+> someone please elaborate on exactly where each of these are stored so
+> that I can more easily translate this conceptual knowledge into the
+> actual git commands I have to run to make it work?
+
+Hi Dolan,
+
+Check cgit interface on kernel.org.
+
+For example linux-next is at
+https://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/log/?id=refs/tags/next-20130729
+
+thanks,
+Daniel.
+
+
+
+------------------------------
+
+Message: 3
+Date: Mon, 29 Jul 2013 10:25:53 +0300
+From: Alexandru Juncu <alexj@rosedu.org>
+Subject: Re: Which repo should I clone?
+To: Dolan Murvihill <dmurvihill@gmail.com>
+Cc: "kernelnewbies@kernelnewbies.org"
+	<kernelnewbies@kernelnewbies.org>
+Message-ID:
+	<CAPhGq=ZmysVoJRcPmF-0PTJ2OHAGV8tP-vPiEARNuNDCB1Th_A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+
+On 29 July 2013 06:39, Dolan Murvihill <dmurvihill@gmail.com> wrote:
+> Hello,
+>
+> I've been able to figure out from all the various HOWTOs about the
+> different kernel trees (main development, -next, -stable, the subsystem
+> trees, etc.) and I see where the files and patches are archived on
+> kernel.org, but I haven't been able to find the actual git repos that I
+> need to clone to work on the main kernel, or any of the others. Can
+> someone please elaborate on exactly where each of these are stored so
+> that I can more easily translate this conceptual knowledge into the
+> actual git commands I have to run to make it work?
+>
+> Thanks,
+> Dolan
+
+Hello!
+
+It depends on what you are looking for. There is the gitweb interface
+[1] for the kernel.org repos. You'll find the repos there. Git, by
+definition, is distributed, to there isn't 'the one true repo'. The de
+facto official repo, I think is considered Linus's linux.git [2]
+(there is also a mirror on github [3], but don't try to send pull
+requests :P on github for the Linux kernel). So if you want a stable
+repo, maybe that is what you should clone.
+
+For a little more unstable version, there's the linux-next repo (I
+think the address is this [4]). It's there new features are being
+introduced first, ,before the mainline version. But most subsystems
+(and chief maintainers) have their own tree (like David's net repo
+[5]).
+
+If you want to start general patching, linux-next should be a good
+start. But if there is a specific subsystem you are interested in, get
+its own repo.
+
+
+[1] https://git.kernel.org/cgit/
+[2] https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/
+[3] https://github.com/torvalds/linux
+[4] https://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/
+[5] https://git.kernel.org/cgit/linux/kernel/git/davem/net.git/
+
+
+
+------------------------------
+
+Message: 4
+Date: Mon, 29 Jul 2013 14:44:46 +0530
+From: PV Juliet <pvjuliet@gmail.com>
+Subject: Notifier Chains
+To: kernelnewbies@kernelnewbies.org
+Message-ID:
+	<CADZXD7Ca9Uat-Kc-Xbqy=AcCa4wZDK1vDXkv3TDWtemc3N_AXQ@mail.gmail.com>
+Content-Type: text/plain; charset="iso-8859-1"
+
+Hi,
+     Is there any way to add a new chain to notifier chain?? One more thing
+whatever the events i am register/unregister the output i am able to get in
+dmesg using printk. Can i get these output to  userspace  (eg files)
+
+Thanks a lot
+Juliet
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130729/d3472dad/attachment-0001.

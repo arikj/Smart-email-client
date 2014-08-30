@@ -1,0 +1,91 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 32, Issue 42
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. Re: Need help to understand system calls (Nitisha Jain)
+   2. Re: Need help to understand system calls (Valdis.Kletnieks@vt.edu)
+   3. Re: mmap how does kernel know a page is mmaped
+      (Valdis.Kletnieks@vt.edu)
+   4. Re: mmap how does kernel know a page is mmaped (kernel neophyte)
+   5. Re: mmap how does kernel know a page is mmaped
+      (Valdis.Kletnieks@vt.edu)
+   6. Re: mmap how does kernel know a page is mmaped (kernel neophyte)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Fri, 26 Jul 2013 00:09:21 +0530
+From: Nitisha Jain <nitishajain15@gmail.com>
+Subject: Re: Need help to understand system calls
+To: Mulyadi Santosa <mulyadi.santosa@gmail.com>
+Cc: kernelnewbies@kernelnewbies.org
+Message-ID:
+	<CAJUy+oRYDK0EnSsECjrzbQ2hTke3xwsTfWQXOPEG0NNWVBbM2w@mail.gmail.com>
+Content-Type: text/plain; charset="iso-8859-1"
+
+My confusion is how to interpret this output from perf , what are
+copy_user_generic_unrolled and native_safe_halt for instance ?
+
+I have profiled iozone benchmark using other tools like gprof and callgrind
+and they show me the actual functions being called by iozone as apparent
+from the source code.
+
+But what is this perf output showing me then ? Are
+generic_file_buffered_write , ext4_file_write etc all system calls ?
+
+
+On Thu, Jul 25, 2013 at 2:59 PM, Mulyadi Santosa
+<mulyadi.santosa@gmail.com>wrote:
+
+> On Tue, Jul 16, 2013 at 2:48 PM, Nitisha Jain <nitishajain15@gmail.com>
+> wrote:
+> > Hello all,
+> >
+> > I am running the Iozone benchmark commands to find disk characteristics
+> on
+> > my system and
+> > trying to construct a call graph for the iozone functions.
+> > I am using perf tools to generate a call graph , but I am having trouble
+> > understanding the output from the perf commands as follows--
+>
+> exactly, what is your confusion?
+>
+>
+> --
+> regards,
+>
+> Mulyadi Santosa
+> Freelance Linux trainer and consultant
+>
+> blog: the-hydra.blogspot.com
+> training: mulyaditraining.blogspot.com
+>
+
+
+
+-- 
+
+Thanks and regards,
+
+*Nitisha Jain*
+9483004565
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130726/4382546f/attachment-0001.

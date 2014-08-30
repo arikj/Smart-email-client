@@ -1,0 +1,95 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 33, Issue 8
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. Re: Getting Started (Sumeet pawnikar)
+   2. Re: Getting Started (anish singh)
+   3. [PATCH 1/1] Squashfs: Optimized uncompressed buffer loop
+      (Manish Sharma)
+   4. Re: Not able to get crash dump (Vivek Satpute)
+   5. simplefs - a ridiculosly simple file system from the scratch
+      (Sankar P)
+   6. Re: Getting Started (Valdis.Kletnieks@vt.edu)
+   7. Re: simplefs - a ridiculosly simple file system from the
+      scratch (Rajat Sharma)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Mon, 5 Aug 2013 22:14:25 +0530
+From: Sumeet pawnikar <sumeet4linux@gmail.com>
+Subject: Re: Getting Started
+To: Valdis.Kletnieks@vt.edu
+Cc: Karan Dev <karandev43@gmail.com>,	kernelnewbies
+	<kernelnewbies@kernelnewbies.org>
+Message-ID:
+	<CAJ9orWSTQ_mn+eBa2iZC_PVGy61WF95UFLDJOtzjShVoQK0iiA@mail.gmail.com>
+Content-Type: text/plain; charset="iso-8859-1"
+
+Hi Valdis,
+
+Thanks for these steps,
+
+On Wed, Jul 31, 2013 at 6:05 PM, <Valdis.Kletnieks@vt.edu> wrote:
+
+> On Wed, 31 Jul 2013 10:32:59 +0530, you said:
+>
+> > I am a computer science student. I want to contribute to the open source
+> > projects, debugging. As it is my first time, i need some guidance.
+>
+> (a) You're better off replying to the list, as you then get answers from
+> others besides me.  Redirecting  back to the list.
+>
+> (b) If you want to actually *help*, and have it set on being the kernel
+> rather
+> than any one of thousands of deserving userspace projects, your best bet is
+>
+> 1) learn to build and install a self-compiled kernel.
+> 2) just get a copy of the 'linux-next' tree
+>
+
+Do we need to git clone 'linux-next' tree or 'linus' tree ?
+
+
+> 3) Update and build kernels every few days
+> 4) watch them fail (and fail they will - I have at least 3 bugs I've
+> tripped
+> over in the past week to report still)
+> 5) Use 'git bisect' to identify the patch that caused the failure, and
+> report
+> it to the appropriate people.
+>
+> Quite frankly, the kernel needs less half-baked patches from novices, and
+> more
+> qualified testers.  And you can get up to speed on testing a heck of a lot
+> faster than you can learn all the ins and outs of kernel code hacking.
+> And if you're ambitious, you can always add "(6) include a patch fixing
+> the problem" once you get better at it...
+>
+>
+> _______________________________________________
+> Kernelnewbies mailing list
+> Kernelnewbies@kernelnewbies.org
+> http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+>
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130805/5e0c77c7/attachment-0001.

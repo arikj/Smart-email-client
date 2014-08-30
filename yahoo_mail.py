@@ -41,7 +41,7 @@ hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML,
        'Connection': 'keep-alive'}
 
 mail = imaplib.IMAP4_SSL('imap.gmail.com')
-mail.login('bhavishya235@gmail.com', 'iitairtwo35')
+mail.login('garg.javesh@gmail.com', 'judge5793')
 
 folders = [folder.split(' "/" ')[1][1:-1] for folder in mail.list()[1]]	
 
@@ -49,7 +49,7 @@ folders = [folder.split(' "/" ')[1][1:-1] for folder in mail.list()[1]]
 #	print folders[j]
 	
 # Out: list of "folders" aka labels in gmail.
-mail.select("newsocial") # connect to inbox.
+mail.select("SPO") # connect to inbox.
 result, data = mail.search(None,'(ALL)')
 
 ids = data[0]						 # data is a list.
@@ -59,7 +59,7 @@ i=0;
 
 for email_id in id_list:
 	i=i+1;
-	if i>50:
+	if i>20:
 		break
 	#mail.store(email_id, '+FLAGS', '\\UnSeen')  #to tag the read mail as seen..
 	result_uid,data_uid = mail.fetch(email_id, "(UID)")
@@ -99,12 +99,21 @@ for email_id in id_list:
 	
 	elif indx2!=-1:
 		body = body[ :indx2]
-		
-	var="Receiver: "+str(receiver) +"\nSender: "+str(sender)+"\nSubject:"+str(subject)+"\nBody: "+str(body);
-	file1 = "file"+str(i);
-	f2 = open(file1,'w')
-	f2.write(var)
-	f2.close()
+	
+
+	file1 = "spo_header"+str(i);	
+	info = str(sender)+"          "+str(subject)
+	#mail_header[folders[folder_lbl]].append(info)
+	file1 = open(file1,'w')
+	file1.write(info)
+	file1.close()
+	
+	
+	file2 = "spo"+str(i);	
+	#mail_header[folders[folder_lbl]].append(info)
+	file2 = open(file2,'w')
+	file2.write(body)
+	file2.close()
 	
 	#result = mail.uid('COPY', msg_uid, 'test')
 	#if result[0] == 'OK':

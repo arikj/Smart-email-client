@@ -1,0 +1,187 @@
+Quora: Top Content This Week on Quora
+
+
+Question: How did Ashton Kutcher prepare for his role as Steve Jobs in the =
+new movie Jobs?
+
+Answer from Ashton Kutcher
+I spent about 3 months preparing the character.
+
+I started by consuming content about Steve Jobs. The script was a fantastic=
+ resource but after reading it I was left with as many questions as answers=
+ as to why he was the way he was and why he made some of the decisions he m=
+ade.  I started by watching documentaries and interviews Silicon Valley His=
+torical Association [ http://www.siliconvalleyhistorical.org/#!steve-jobs-f=
+ilm/c1x1c ] about him and collecting youtube content Inspired By Jobs: Tech=
+nology [ https://flipboard.com/section/inspired-by-
+Read More: http://www.quora.com/Ashton-Kutcher-1/How-did-Ashton-Kutcher-pre=
+pare-for-his-role-as-Steve-Jobs-in-the-new-movie-Jobs#ans2909891
+-----
+James Calbraith: How I sold 8000 books in my first year - and why it should=
+n't matter to you.
+Glyn Williams voted up this post.
+Post from James Calbraith
+A year ago today, I published on Amazon my first novel, =E2=80=9CThe Shadow=
+ of Black Wings [ http://www.amazon.com/gp/product/B008FS5RPC/ref=3Das_li_q=
+f_sp_asin_tl?ie=3DUTF8&camp=3D1789&creative=3D9325&creativeASIN=3DB008FS5RP=
+C&linkCode=3Das2&tag=3Djamescalbr-20 ]=E2=80=9D =E2=80=93 book 1 of a plann=
+ed long-running saga, =E2=80=9CThe Year of the Dragon [ http://www.amazon.c=
+om/gp/product/B00CKEY974/ref=3Das_li_ss_tl?ie=3DUTF8&camp=3D1789&creative=
+=3D390957&creativeASIN=3DB00CKEY974&linkCode=3Das2&tag=3Djamescalbr-20 ]=E2=
+=80=9C. Since then, I published a few more books =E2=80=93 three more books=
+ of the series, a short stor
+Read More: http://jamescalbraith.quora.com/How-I-sold-8000-books-in-my-firs=
+t-year-and-why-it-shouldnt-matter-to-you
+-----
+Mind Boggling Stories: Perception
+Puneet Chotia voted up this post.
+Post from Ruchit Doshi
+A teacher teaching Maths to seven-year-old Arnav asked him, "If I give you
+one apple and one apple and one apple, how many apples will you have?
+"Within a few seconds Arnav replied confidently, "Four!"
+
+The dismayed teacher was expecting an effortless correct answer (three).
+She was disappointed.  "Maybe the child did not listen properly," she
+thought.  She repeated, "Arnav, listen carefully..  If I give you one
+apple and one apple and one apple, how many apples will you have?"
+
+Arnav had seen the disappointment on his teacher's face.  He calcu
+Read More: http://mbstories.quora.com/Perception
+-----
+Question: Why doesn't Batman just kill The Joker [ http://www.quora.com/The=
+-Joker-Batman-character ]?
+Rachit Tripathi voted up this answer.
+Answer from Jesse Richards
+Because the Joker wins if Batman kills him. That's what the Joker wants. Ev=
+erything he does is to taunt Batman into killing him. In fact, the interest=
+ing part of their relationship, the real conflict of each story, is not to =
+see if Batman will stop him (he will), but to watch Batman struggle with no=
+t killing him, because anyone other than Batman would of course kill him. T=
+his self-control is Batman's superpower.=20=20
+
+
+The Joker and Batman are each trying to prove a point to society - and real=
+ly to us, the readers. The Joker wants Batman to kill h
+Read More: http://www.quora.com/Batman-comics-movie-and-creative-franchise/=
+Why-doesnt-Batman-just-kill-The-Joker#ans2873072
+-----
+Question: Why am I failing in life as compared to my friends, given that I =
+want to be a screenwriter and can't get a job waiting tables?
+
+Answer from Rishabh Baldi
+This is a story of two guys. Ricky and Antony. Both graduated from the same=
+ college.
+
+Ricky got a job paying $80000, Antony could not find anything.
+
+Ricky got the chicks, Antony was celibate.
+
+Ricky went to daily parties, Antony was wasting his 20s
+
+Ricky got promoted, Antony was a waiter.
+
+Ricky invested in shares, Antony hardly earned enough to invest
+
+Ricky lost everything in shares, Antony found the love of his life
+
+Ricky was deserted by all girls, Antony got married.
+
+Ricky was broke, Antony built a house.
+
+Ricky had no sex, Antony made=20
+Read More: http://www.quora.com/Life/Why-am-I-failing-in-life-as-compared-t=
+o-my-friends-given-that-I-want-to-be-a-screenwriter-and-cant-get-a-job-wait=
+ing-tables#ans2843923
+-----
+Question: What are some English language rules that native speakers don't k=
+now, but still follow?
+
+Answer from Marc Ettlinger
+Pretty much all of them.
+
+One of the first things you realize, when you study linguistics, is that la=
+nguage=E2=80=94every language=E2=80=94is filled with an amazing amount of c=
+omplexity and regularity to the point of defying description. And I mean th=
+at literally. [ http://www.quora.com/Psychology/How-do-I-stop-being-annoyed=
+-by-people-using-literally-as-an-intensifier ] There is not one single natu=
+ral language that has been completely formalized at all levels of descripti=
+on in any way.=20
+
+Think about that for a second.=20
+
+Even English grammar, the ins and outs o
+Read More: http://www.quora.com/English-language/What-are-some-English-lang=
+uage-rules-that-native-speakers-dont-know-but-still-follow#ans2905862
+-----
+Question: What is the worst mistake ever made in computer science and progr=
+amming that proved to be painful for programmers for years?
+
+Answer from Anders Kaseorg
+One very good candidate, according to Tony Hoare (developer of quicksort [ =
+http://www.quora.com/Quicksort ] and one of the early implementors of ALGOL=
+), is his invention of the null reference. By allowing programmers to submi=
+t a non-object anywhere an object would be accepted, a safety hole is opene=
+d in every API that=E2=80=99s invisible to the compiler, necessitating exte=
+nsive manual checks and runtime assertions. In a 2009 presentation [ http:/=
+/qconlondon.com/london-2009/presentation/Null+References:+The+Billion+Dolla=
+r+Mistake ], Hoare estimated the=20
+Read More: http://www.quora.com/Computer-Programming/What-is-the-worst-mist=
+ake-ever-made-in-computer-science-and-programming-that-proved-to-be-painful=
+-for-programmers-for-years#ans2880747
+-----
+Posts: Easy way to save delivery charges if your product is less than 500
+Prakhar Gupta voted up this post.
+Post from Niranjan Bengaluru
+Follow this simple formula with Cash On Delivery
+=20
+(Your product) + (Any pre-order book) =3D 500/greater
+=20
+Once you place the order, your product will be shipped asking only actual p=
+rice since total is 500. After getting the product, go to your order id and=
+ click "cancel" for pre-order book whose status is "we will ship once relea=
+sed".
+Read More: http://www.quora.com/Niranjan-Bengaluru/Posts/Easy-way-to-save-d=
+elivery-charges-if-your-product-is-less-than-500
+-----
+Question: Why is Pratibha Patil widely hated & disrespected?
+
+Answer from Balaji Viswanathan
+1. Ms. Patil used Indian government's money to take useless foreign trips w=
+ith her grandchildren. When they are on travel, Presidents are supposed to =
+meet foreign dignitaries and improve diplomatic relationships & cultural ex=
+change. In her foreign trips, her huge extended family travels at taxpayer'=
+s expense to touristy spots. 22 trips and $40 million in travel expenses.=
+=20
+http://articles.timesofindia.indiatimes.com/2012-05-03/india/31555921_1_for=
+eign-trips-president-pratibha-patil-travel=20
+=20
+2. As a parting gift to the nation, Patil pardoned ove
+Read More: http://www.quora.com/India/Why-is-Pratibha-Patil-widely-hated-di=
+srespected#ans1535378
+-----
+Question: How is the boarding group for your ticket on a flight determined?
+
+Answer from Aravind Bharadwaj
+There are six primary styles of boarding:
+
+Outside-in (United)
+United refers to their outside-in boarding process as "WilMA" (Window, Midd=
+le, Aisle).
+United boards Mileage Plus Premier, Mileage Plus Premier Associate, Mileage=
+ Plus Premier Executive, and Mileage Plus 1K members first. After elites ha=
+ve boarded, United has courtesy boarding for passengers requiring extra ass=
+istance. Then, passengers board windows first, then middle seats, and final=
+ly aisles. United instituted this process to speed up boarding and to reduc=
+e clogging in the aisles.
+Read More: http://www.quora.com/Air-Travel/How-is-the-boarding-group-for-yo=
+ur-ticket-on-a-flight-determined#ans2893976
+-----
+
+-----
+Click here to unsubscribe: http://www.quora.com/email_optout/qemail_optout?=
+code=3D7346b6898700f26675f3ee296eea39ca&type=3D2&email=3Dgarg.javesh%40gmai=
+l.com.
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www=
+.w3.org/TR/x

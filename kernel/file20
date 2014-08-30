@@ -1,0 +1,76 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 33, Issue 31
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. Re: Yaffs2 on None-ECC MTD (richard -rw- weinberger)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Sat, 17 Aug 2013 17:43:56 +0200
+From: richard -rw- weinberger <richard.weinberger@gmail.com>
+Subject: Re: Yaffs2 on None-ECC MTD
+To: Woody Wu <narkewoody@gmail.com>
+Cc: kernelnewbies <kernelnewbies@kernelnewbies.org>
+Message-ID:
+	<CAFLxGvxNiVmQYHvOq-834DikrQ=HXOQA2o6eOt6vamrbaLKagQ@mail.gmail.com>
+Content-Type: text/plain; charset=ISO-8859-1
+
+On Sat, Aug 17, 2013 at 2:37 PM, Woody Wu <narkewoody@gmail.com> wrote:
+> On Sat, Aug 17, 2013 at 12:58:41PM +0200, richard -rw- weinberger wrote:
+>> On Sat, Aug 17, 2013 at 10:28 AM, Woody Wu <narkewoody@gmail.com> wrote:
+>> > Hi,
+>> >
+>> > Does Yaffs2 file system has its own capabilities to do ECC? My NAND
+>> > driver for some reason cannot enable ECC yet.  Also I want to ask the
+>> > same question to Jffs2.
+>>
+>> The Linux MTD subsystem is able to do software ECC.
+>>
+> By far, I cannot enable any kind of ECC from MTD yet, since my u-boot
+> has some problem cannot do correct ECC and my root file system image is
+> flashed by u-boot. If I enabled ECC from MTD, my root file system cannot
+> mount.
+
+Then fix your uboot. Or at least hire someone to do so.
+Otherwise you *will* encounter massive problems.
+
+> Do you know whethe Yaffs2/Jffs2 has their own build-in ECC function?
+> Googled this but not get clear answer.
+
+IIRC yaffs2 has it's own ECC stuff. It writes into the spare area which is
+a no-go and one of the reasons why it's not mainline.
+
+-- 
+Thanks,
+//richard
+
+
+
+------------------------------
+
+_______________________________________________
+Kernelnewbies mailing list
+Kernelnewbies@kernelnewbies.org
+http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+
+
+End of Kernelnewbies Digest, Vol 33, Issue 31
+*********************************************

@@ -1,0 +1,73 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 33, Issue 29
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. Re: How is run queue length computed in linux proc filesystem
+      (emani murali)
+   2. Re: How is run queue length computed in linux proc filesystem
+      (Valdis.Kletnieks@vt.edu)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Fri, 16 Aug 2013 14:51:59 +0100
+From: emani murali <murali132@gmail.com>
+Subject: Re: How is run queue length computed in linux proc filesystem
+To: Valdis.Kletnieks@vt.edu
+Cc: kernelnewbies@kernelnewbies.org
+Message-ID:
+	<CAEfTDT5RmOUemfzh=DWxibLxhO7Bk6vbgQYVuWR4yxmbb397cQ@mail.gmail.com>
+Content-Type: text/plain; charset="iso-8859-1"
+
+Exactly, I would like to know how is runq computed from load average. Are
+there any system calls to get this value.
+
+Cheers,
+Kris
+
+On 16 August 2013 14:46, <Valdis.Kletnieks@vt.edu> wrote:
+
+> On Fri, 16 Aug 2013 14:20:29 +0100, emani murali said:
+>
+> > I'm trying to obtain number of runnable processes from linux kernel.
+>
+> Why are you trying to get that number, and how important is accuracy?
+> (Remember that the value of that number can change literally several
+> tens of thousands of times per second).
+>
+> > The wiki page http://en.wikipedia.org/wiki/Load_(computing) provides
+> some
+> > insight into how run queue length is computed based on ldavg values but
+> it
+> > is unclear. Can someone provide more pointers on this. Cheers
+>
+> Actually, you have that backwards.  Load average is computed based on run
+> queue
+> length.
+>
+
+
+
+-- 
+Thanks,
+Murali Krishna Emani
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130816/58d38256/attachment-0001.

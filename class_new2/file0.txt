@@ -1,0 +1,68 @@
+Hello all
+
+As part of the summer project under Programming Club we have developed an
+android app "Academic Planner" which manages our academic data and hope so
+it will be useful for you also.
+
+Link to download the apk file is :
+https://docs.google.com/file/d/0B46Ub1pRKtuBX1U2TmJDaXVtVkE/edit?pli=1
+
+A brief description of the app :
+
+The user can input course number of the courses and details of the course
+like instructor name, instructor email id, course schedule, venue, etc.
+are automatically fetched from OARS. Other course or instructor details
+which are not provided by OARS can be manually entered or edited by the
+user.
+
+When the user enters his/her roll no., the latest exam schedule on OARS is
+automatically fetched and is also synced with the phone's calendar.
+
+Course weblink can be clicked to open the webpage and instructor's email
+id can be clicked to launch email application from the course display
+page.
+
+There is also a notes tab where different notes can be added and can serve
+as android sticky notes.
+
+It automatically creates a weekly schedule(timetable) for all the added
+courses clearly stating the lab, lecture and tutorial.
+
+PLEASE ENSURE THAT YOU ARE CONNECTED TO IITK WIFI NETWORK ON NO-PROXY
+WHILE ADDING THE COURSES AND EXAM SCHEDULE(if you dont know how to do it
+follow this link http://goo.gl/2SOick ) .
+
+For more details regarding the app, please read the "ABOUT APP" page in
+the Menu option of the app.
+
+Link to the video explaining the functioning of this app :
+https://www.youtube.com/watch?v=_TXb53-yKGg
+
+Please give us your valuable feedback and suggestions through the
+following link :
+https://docs.google.com/forms/d/1eBcVzX90inJzYWwIq8Ry0o8_yBNOgwYTlb-Glg0sK9k/viewform
+
+
+Hope this app would prove to be useful for the junta.
+
+In case of any queries, please contact the developer of the app:
+
+Kundan Kumar  12375  kundan@iitk.ac.in  7897584034
+Sakshi Gupta  12604  gsakshi@iitk.ac.in
+Swechha       12751  swechha@iitk.ac.in
+
+-- 
+Rudra Pratap Suman
+General Secretary,
+Science and Technology Council,
+Students' Gymkhana.
+Email: sntsecy@iitk.ac.in, rpsuman@iitk.ac.in
+Phone: +91-9450003098
+Council Webpage: http://students.iitk.ac.in/snt
+council FB page:- https://www.facebook.com/sntiitk
+
+'It's still magic even if you know how it's done'
+_______________________________________________
+students mailing list
+students@lists.iitk.ac.in
+http://lists.iitk.ac.in/mailman/listinfo/students

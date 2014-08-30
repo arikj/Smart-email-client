@@ -1,0 +1,294 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 33, Issue 7
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. Re: Where to call my init() from (without LKM)?
+      (Valdis.Kletnieks@vt.edu)
+   2. Re: How kernel handle interrupts[AX88796B network controller]
+      (Woody Wu)
+   3. Re: Reduce boot time console messages? (Woody Wu)
+   4. Re: Reduce boot time console messages? (Valdis.Kletnieks@vt.edu)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Sun, 04 Aug 2013 13:21:55 -0400
+From: Valdis.Kletnieks@vt.edu
+Subject: Re: Where to call my init() from (without LKM)?
+To: George White <georgewhite584@yahoo.co.uk>
+Cc: "kernelnewbies@kernelnewbies.org"
+	<kernelnewbies@kernelnewbies.org>
+Message-ID: <116594.1375636915@turing-police.cc.vt.edu>
+Content-Type: text/plain; charset="iso-8859-1"
+
+On Sun, 04 Aug 2013 10:40:42 +0100, George White said:
+
+> Most of my code is implemented in a new file I created??under /kernel/
+> myfile.c and added in the main Makefile (other parts of the code are spread
+> around the existing code as edits).
+
+> Question A:??Is that a good idea? Alternatives?
+
+Convince us it should be under kernel/ and not elsewhere in the tree.
+
+> Question B: Where is the best place to I call this init function from?
+
+There's a nice 'initcall' infrastructure which will get your code called during
+system boot.  You even have some control over *when* it gets called (early, or
+with other devices, or other kernel code, or late).
+
+> Question C: Is using procfs the best option for setting up config options 
+
+Probably not.  sysfs exists for a reason.  Also, depending on what the
+code does and when it needs to initialize, procfs may not be an option (if
+you have to touch the vallue before userspace gets cranking, it won't work
+and you need to use a kernel commandline option).
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 865 bytes
+Desc: not available
+Url : http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130804/a5f32201/attachment-0001.bin 
+
+------------------------------
+
+Message: 2
+Date: Mon, 5 Aug 2013 11:01:52 +0800
+From: Woody Wu <narkewoody@gmail.com>
+Subject: Re: How kernel handle interrupts[AX88796B network controller]
+To: anish kumar <anish198519851985@gmail.com>
+Cc: linux-kernel@vger.kernel.org, kernelnewbies@kernelnewbies.org
+Message-ID: <20130805030152.GA23131@zuhnb712>
+Content-Type: text/plain; charset=us-ascii
+
+On Mon, Jan 07, 2013 at 10:06:30PM +0530, anish kumar wrote:
+> On Sat, 2012-12-22 at 23:11 +0800, Woody Wu wrote:
+> > On Fri, Dec 21, 2012 at 01:33:03PM -0800, anish kumar wrote:
+> > > On Fri, 2012-12-21 at 23:34 +0800, Woody Wu wrote:
+> > > > On Thu, Dec 20, 2012 at 10:05:05AM -0800, anish singh wrote:
+> > > > > On Dec 20, 2012 6:30 AM, "Woody Wu" <narkewoody@gmail.com> wrote:
+> > > > > >
+> > > > > > Hi, List
+> > > > > >
+> > > > > > Where is the Kernel code that handles external interrupts? I want to
+> > > > > > have a look at it but haven't found out where it is.
+> > > > > >
+> > > > > > Actually, I have some basic questions about interrupt handling in Linux.
+> > > > > > 1. After Kernel's ISR received an interrupt, I believe it will invoke a
+> > > > > >    handler defined in a device driver if any. But it should be the
+> > > > > >    device driver's responsibility or kernel ISR's responsibility to
+> > > > > >    clear (or acknowledge) the interrupt?
+> > > > > If the interrupt in question is currently being handled then in
+> > > > > the case of edge triggered interrupt we just mask the interrupt,set it
+> > > > > pending and bail out.Once the interrupt handler completes then we check for
+> > > > > pending interrupt and handle it.In level triggered we don't do that.
+> > > > > Kerenel ISR -this is mixture of core kernel interrupt handling code + your
+> > > > > device driver interrupt handler(if this is chip driver which is supposed to
+> > > > > get one interrupt and is reponsible for calling other interrupt handlers
+> > > > > based on the chip register status then you do explicit masking unmasking
+> > > > > yourself).
+> > > > > If you device driver is a interrupt controller driver then you register
+> > > > > your driver with kernel interrupt handling code and need to write some
+> > > > > callbacks such as .mask,.unmask and so on.This callbacks are called at
+> > > > > appropiate places whenever the interrupt is raised.This interrupt is then
+> > > > > passed to drivers who has requested for this interrupt by calling
+> > > > > request_irq.
+> > > > > >
+> > > > > > 2. My device, an AX88796B network controller, asserting the interrupt
+> > > > > >    line in a level-triggered manner. Now I met problem with the device
+> > > > > that
+> > > > > >    might caused by the CPU interrupt mode is not set as level-triggered by
+> > > > > >    edge trigger.  My CPU is Samsung S3C2410, an ARM920T powered one.  Does
+> > > > > >    anyone know usually where and how should I do this kind of setting?
+> > > > > Just pass the parameter "level triggered" in request_irq in your device
+> > > > > driver.
+> > > > 
+> > > > Hi Sign,
+> > > > 
+> > > > I searched the interrupt.h for the all the defined flags that I can pass
+> > > > to the request_irq, but there is no a flag looks like "level triggered".
+> > > > Would you tell me what you mean the parameter "level triggered"?
+> > > irq_set_irq_type(info->irq, IRQ_TYPE_LEVEL_LOW)
+> > > 
+> > > include/linux/irq.h
+> > > IRQ_TYPE_LEVEL_HIGH          - high level triggered
+> > > IRQ_TYPE_LEVEL_LOW           - low level triggered
+> > 
+> > Thanks. Now I find the function.
+> > 
+> > I searched some code about irq in ARM architecure.  Some other
+> > people talked about do_IRQ() probabaly is wrong for ARM. There is simply
+> > no that function in ARM. Maybe the do_IRQ in x86 is replaced by
+> > handle_IRQ.
+> arch/arm/kernel/entry-armv.S
+> __irq_svc is called by the arm processor which in turn calls irq_handler
+> macro.I think this is the lowest level handler after which linux
+> interrupt handling takes over.
+Only today, I saw this email you replied. Many thanks!
+
+> > 
+> > For the irq_set_irq_type(), do you think what's the correct place to
+> > call it? Inside my device driver or outside the device driver (probably
+> > in the board definition file)? If that should be called inside a device
+> > driver, should it be the driver probe function or in the open function?
+> > After or before the invocation of request_irq()?
+> irq_set_irq_type() should be called by device driver code not by the
+> board file.It should be called in the probe function AFAIK.
+> > 
+> > Sorry for asking too many question.  I found the kernel + device driver
+> > irq handling part still not clear to me.
+> You are welcome to ask as many question as you want.
+> > 
+> > 
+> > > > 
+> > > > Thanks.
+> > > > 
+> > > > > >
+> > > > > >
+> > > > > > Thanks in advance.
+> > > > > >
+> > > > > > --
+> > > > > > woody
+> > > > > > I can't go back to yesterday - because I was a different person then.
+> > > > > >
+> > > > > > _______________________________________________
+> > > > > > Kernelnewbies mailing list
+> > > > > > Kernelnewbies@kernelnewbies.org
+> > > > > > http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+> > > > 
+> > > 
+> > 
+> 
+
+-- 
+I can't go back to yesterday - because I was a different person then
+
+
+
+------------------------------
+
+Message: 3
+Date: Mon, 5 Aug 2013 11:07:26 +0800
+From: Woody Wu <narkewoody@gmail.com>
+Subject: Re: Reduce boot time console messages?
+To: Valdis.Kletnieks@vt.edu
+Cc: kernelnewbies@kernelnewbies.org
+Message-ID: <20130805030726.GA23169@zuhnb712>
+Content-Type: text/plain; charset=us-ascii
+
+On Sat, Aug 03, 2013 at 10:08:42AM -0400, Valdis.Kletnieks@vt.edu wrote:
+> On Sat, 03 Aug 2013 20:27:55 +0800, Woody Wu said:
+> > Hi,
+> >
+> > My kernel is printing too many messages at boot time from a special
+> > device driver (j2ffs filesystem). I belive these kernel messages are
+> > level DEBUG. If don't change the kernel code, is there anyway to print
+> > only some higher level of messages?
+> 
+> In your kernel source tree, there's a file called Documentation/kernel-parameters.txt
+> and in it, we find documentation  of the following two boot-time parameters:
+> 
+> 
+>         ignore_loglevel [KNL]
+>                         Ignore loglevel setting - this will print /all/
+>                         kernel messages to the console. Useful for debugging.
+>                         We also add it as printk module parameter, so users
+>                         could change it dynamically, usually by
+>                         /sys/module/printk/parameters/ignore_loglevel.
+> ...
+> 
+>         loglevel=       All Kernel Messages with a loglevel smaller than the
+>                         console loglevel will be printed to the console. It can
+>                         also be changed with klogd or other programs. The
+>                         loglevels are defined as follows:
+> 
+>                         0 (KERN_EMERG)          system is unusable
+>                         1 (KERN_ALERT)          action must be taken immediately
+>                         2 (KERN_CRIT)           critical conditions
+>                         3 (KERN_ERR)            error conditions
+>                         4 (KERN_WARNING)        warning conditions
+>                         5 (KERN_NOTICE)         normal but significant condition
+>                         6 (KERN_INFO)           informational
+>                         7 (KERN_DEBUG)          debug-level messages
+
+Valdis, thank you very much.  I just passed loglevel=7 as kernel command
+line and hope it can suspress KERN_DEBUG messages printed out to console
+at boot time. But, it seems not work. A lot of debug level messages from
+jffs2 module still print out. I will go to check where is wrong.
+
+> 
+> In addition, there may or may not be a module parameter to control the
+> logging level of the particular module - look for the word 'debug' in that
+> file.  There's also the 'dynamic debugging' facility which the module may
+> be coded to support....
+
+
+
+-- 
+I can't go back to yesterday - because I was a different person then
+
+
+
+------------------------------
+
+Message: 4
+Date: Mon, 05 Aug 2013 00:44:49 -0400
+From: Valdis.Kletnieks@vt.edu
+Subject: Re: Reduce boot time console messages?
+To: Woody Wu <narkewoody@gmail.com>
+Cc: kernelnewbies@kernelnewbies.org
+Message-ID: <146201.1375677889@turing-police.cc.vt.edu>
+Content-Type: text/plain; charset="us-ascii"
+
+On Mon, 05 Aug 2013 11:07:26 +0800, Woody Wu said:
+
+> Valdis, thank you very much.  I just passed loglevel=7 as kernel command
+> line and hope it can suspress KERN_DEBUG messages printed out to console
+> at boot time. But, it seems not work. A lot of debug level messages from
+> jffs2 module still print out. I will go to check where is wrong.
+
+Weird.  Do the "debugging" messages actually have the string '[JFFS2 DBG]'
+in them?  If not, then they're some *other* messages from jffs2.
+
+Also, double-check you don't have ignore_loglevel in the kernel command line.
+(This one can be tricky - do a 'cat /proc/cmdline' once you're booted to see
+what you really had - there's support for compiling in all/part of a commandline
+to work around buggy boot loaders that only support insanely short parameter
+lists - so what your  boot loader said it passed to the kernel may not be
+what the kernel used).
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 865 bytes
+Desc: not available
+Url : http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130805/25a75e21/attachment-0001.bin 
+
+------------------------------
+
+_______________________________________________
+Kernelnewbies mailing list
+Kernelnewbies@kernelnewbies.org
+http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+
+
+End of Kernelnewbies Digest, Vol 33, Issue 7
+********************************************

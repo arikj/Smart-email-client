@@ -1,0 +1,132 @@
+
+Dear Class:
+
+We now move to the next phase, where we have to standardize our lists, and
+also produce a dictionary of mis-spelled words.
+
+There is a wide variation in the legitimacy of the groundtruths created
+by each of you, which may account for some of the variation in P/R
+scores.
+
+For testing purposes, your codes will be tested against the groundtruth
+morphological parses of thos with the lowest scores.
+
+Meanwhile. we will now work to standardize these.
+
+Below are 10 groupings, eight for Hindi, and one each for Telugu
+and Punjabi.
+
+Each group will have to meet once and discuss and standardize
+their morphological cuts and a set of spelling errors.
+
+They may also wish to discuss the forthcoming quiz next Wednesday.
+
+For each group, the FIRST PERSON in the list is the convenor, and
+the SECOND person is the spell-checker.
+
+It is the Convenor's job to
+
+a) convene a meeting of the group before MONDAY 19 August.  If possible
+get another person, a "language expert" who may be from any branch, but
+who should know the language well.  You may need to give them a treat !
+
+b) each person must bring 4 copies of printouts of your own morphological
+parses used as groundtruths.  (Try to get 2-3 columns
+per page).
+
+c) all of you must analyze each others' breakup of the words, and agree
+to a consensus.  Note that:
+    - all foreign words are excluded from the ground truth
+    - words may have two possible legitimate analyses
+    - do not try to parse using laws of sandhi or samAsa or pratyay, just
+      the parses that are somewhat similar to the root.
+    - any word that is in your language, but that you cannot agree upon
+       will be separately listed
+       with the best parse(s) in a problem-words list.
+
+d) all words that are mis-spelled.  These have to be collected by the
+SPELL-CHECKER, who must format them - correct word, followed by
+mis-spelling(s) -  and post the file "spell-error-LANGUAGE.txt" on
+your page.
+
+e) By Tuesday 20th, the convenor must post the corrected and agreed
+upon list "groundtruth-morph.txt", and also the "problems-morph.txt",
+on their pages.  We will then
+try to combine all of your groundtruth lists.
+
+f) Each language group will have a follow-up meeting next friday during
+the class timing and collate their own word lists with others.
+Many words (Hindi) appear
+in more than one list, and we will try to rationalize these in case
+of mismatches.
+
+g) This exercise carries part of the total HOMEWORK GRADE. Those failing
+to particpate in the convened meetings will not have their
+words evaluated, and will also miss this grade component.
+
+For languages with few users, please consult external experts ASAP.
+
+==== GROUPINGS ====
+
+A
+Hindi    10104     Ankit Modi       list 23  3      amodi@iitk.ac.in
+Hindi    10409     Mohit Garg       list 21  7      gmohit@iitk.ac.in
+Hindi    10511     Pranjal Singh    list 06  11     spranjal@iitk.ac.in
+Hindi    10171     Atul K Sinha     list 13  5      atulkr@iitk.ac.in
+
+B
+Hindi    13111003  Abhra Dasgupta   list 16  29     abhra@iitk.ac.in
+Hindi    13111035  Naman Bansal     list 00  30     namanb@iitk.ac.in
+Hindi    13111059  Shshwat Chandra  list 22  31     chandras@iitk.ac.in
+Hindi    13111164  Saurabh Sriv     list 10  32     ssri@iitk.ac.in
+
+C
+Hindi    13111166  Umair Z Ahmed    list 32  33     umair@iitk.ac.in
+Hindi    10411     Mohit Gupta      list 05  8      mohitt@iitk.ac.in
+Hindi    11615     Rohit K Jha      list 39  27     rkjha@iitk.ac.in
+Hindi    10817     Vishal K Gupta   list 18  20     vishalkg@iitk.ac.in
+
+D
+Hindi    11619     Rohun Tripati    list 02  28     rohunt@iitk.ac.in
+Hindi    10621     Sachin yadav     list 31  15     sachinky@iitk.ac.in
+Hindi    10524     Pratik Kanwal    list 25  13     pkanwal@iitk.ac.in
+Hindi    10726     Souraj Misra     list 14  17     sjmisra@iitk.ac.in
+
+E
+Hindi    Y9227094  Ankit Bhutani    list 29  34     ankitbhu@iitk.ac.in
+Hindi    11523     Prashant Jalan   list 03  26     prasant@iitk.ac.in
+Hindi    10627     Sakaar Khurana   list 38  16     sakaar@iitk.ac.in
+Hindi    10229     Devanshu Arya    list 24         devanshu@iitk.ac.in
+                                             6
+F
+Hindi    10535     Priya            list 01  14     prigoyal@iitk.ac.in
+Hindi    10730     Sugam Anand      list 20  18     sugambh@iitk.ac.in
+Hindi    11434     Mohit Sharma     list 30  25     smohit@iitk.ac.in
+Hindi    10145     Arpit Jain       list 28         arpitj@iitk.ac.in
+                                             4
+G
+Hindi    10461     Nitish Gupta     list 04  9      gnitish@iitk.ac.in
+Hindi    10465     Nitish Sharma    list 15  10     nisharma@iitk.ac.in
+Hindi    10767     Triya            list 12  19     triya@iitk.ac.in
+Hindi    11198     Bhavishy Mittal  list 09  22     bhavishy@iitk.ac.in
+Hindi    Y9227052  AkashDeep Patel  ?list30         akashdp@iitk.ac.in
+                                             35
+H
+Hindi    10074     Amit Kumar       list 11  1      akkumar@iitk.ac.in
+Hindi    11183     Ayush Mittal     list 27  21     ayushmi@iitk.ac.in
+Hindi    10086     Anant Raj        list 19  2      anantraj@iitk.ac.in
+Hindi    11390     Lohit Jain       list 08  24     lohit@iitk.ac.in
+Hindi    11299     Harsh v Sharma   list 17         harshar@iitk.ac.in
+                                             23
+I
+Telugu   10001     AUSS Pradeep              38     deepu@iitk.ac.in
+Telugu   Y9227645  V Anurag Sai              39     ankitbhu@iitk.ac.in
+
+??J
+Punjabi  10162     Ashudeep Singh            36     ashudeep@iitk.ac.in
+Punjabi  10630     Salman Mohamad   [??]     44     salmanmd@iitk.ac.in
+
+?? ritesh gautam
+?? priyank jaini
+?? piyali bhattacharya
+

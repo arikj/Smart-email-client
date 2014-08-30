@@ -1,0 +1,97 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 31, Issue 15
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. Re: File-system driver issue (Saket Sinha)
+   2. Re: File-system driver issue (Rohan Puri)
+   3. Re: File-system driver issue (Saket Sinha)
+   4. pci_iomap() and pci_ioremap_bar() (Warlich, Christof)
+   5. Re: printk and kernel log (Mulyadi Santosa)
+   6. kernel crash and dabt_svc (Mohammed Shafi)
+   7. Re: pci_iomap() and pci_ioremap_bar() (JAYESH TANK)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Wed, 26 Jun 2013 10:32:02 +0530
+From: Saket Sinha <saket.sinha89@gmail.com>
+Subject: Re: File-system driver issue
+To: kernelnewbies@kernelnewbies.org
+Message-ID:
+	<CAK25hWN5as3WhXNLiyNk8ig===Shay963E6M+dwxLmT7WrO96w@mail.gmail.com>
+Content-Type: text/plain; charset="iso-8859-1"
+
+Can you help me find the equivalent entry(I mean arch-specific definition)
+of current in 3.8.3 kernel which I think is missing.
+I think because of all this I am getting some strange warnings and error.
+
+
+On Wed, Jun 26, 2013 at 10:28 AM, Rohan Puri <rohan.puri15@gmail.com> wrote:
+
+> On Wed, Jun 26, 2013 at 1:44 AM, Saket Sinha <saket.sinha89@gmail.com>
+> wrote:
+> > I have to port a driver from 2.6.18 to 3.8.3
+> >
+> > Look at the below declaration of current
+> > http://lxr.free-electrons.com/source/scripts/kconfig/gconf.c#L62
+> > Where struct menu is
+> > http://lxr.free-electrons.com/source/scripts/kconfig/expr.h#L159
+> >
+> > The above one is in kconfig while the lower one is in the kernel. So
+> would
+> > they be able to affect each other? I guess NO
+> >
+> > NOW in the driver to be ported-
+> > current is defined as:
+> > struct task_struct *task = current;
+> >
+> > but is still able to excess  the field members of task_struct
+> >  http://lxr.linux.no/linux+v2.6.18/include/linux/sched.h#L767
+> > like
+> > attr.ia_uid = current->uid;
+> > attr.ia_gid = current->gid;
+> >
+> > though it has not been initialized or assigned or typecasted to this
+> > task_struct.
+> > HOW?
+> >
+> > I searched on the entire lxr but could not find the solution.
+> > Kindly help.
+> > PS: This driver is built on 2.6.28 kernel so use lxr from 2.6.18 kernel
+> only
+> > like
+> >  http://lxr.linux.no/linux+v2.6.18/
+> >
+> >
+> > _______________________________________________
+> > Kernelnewbies mailing list
+> > Kernelnewbies@kernelnewbies.org
+> > http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+> >
+> Hi Saket,
+>
+> Its arch specifc, check file
+> http://lxr.linux.no/#linux+v2.6.18/include/asm-x86_64/current.h#L15
+>
+> - Rohan
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130626/7f7741b0/attachment-0001.

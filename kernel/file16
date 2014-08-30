@@ -1,0 +1,549 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 33, Issue 26
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. Who is 'Freeing init memory ...' (Woody Wu)
+   2. Re: Who is 'Freeing init memory ...' (Belisko Marek)
+   3. Re: Who is 'Freeing init memory ...' (Woody Wu)
+   4. Re: Who is 'Freeing init memory ...' (bill4carson)
+   5. Re: Who is 'Freeing init memory ...' (Woody Wu)
+   6. how to know which cpu current process run (loody)
+   7. Re: how to know which cpu current process run
+      (Valdis.Kletnieks@vt.edu)
+   8. Re: how to know which cpu current process run (loody)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Thu, 15 Aug 2013 16:08:17 +0800
+From: Woody Wu <narkewoody@gmail.com>
+Subject: Who is 'Freeing init memory ...'
+To: kernelnewbies@kernelnewbies.org
+Message-ID: <20130815080817.GA19876@zuhnb712.ap.bm.net>
+Content-Type: text/plain; charset=us-ascii
+
+Hi,
+
+Near the end of kernel startup, there is a message 'Freeing init memory
+..'. This process on embedded system takes several seconds. After
+searched kernel source, however, I cannot find the same literal text in
+all the .c files.  So, I want to know, who was printing this message and
+how can I disable the behavior to save some boot time since I don't care
+losting of several hundreds kilo bytes of memory.
+
+Thanks in advance.
+woody
+
+-- 
+I can't go back to yesterday - because I was a different person then
+
+
+
+------------------------------
+
+Message: 2
+Date: Thu, 15 Aug 2013 10:41:39 +0200
+From: Belisko Marek <marek.belisko@gmail.com>
+Subject: Re: Who is 'Freeing init memory ...'
+To: Woody Wu <narkewoody@gmail.com>
+Cc: Kernel Newbies <kernelnewbies@kernelnewbies.org>
+Message-ID:
+	<CAAfyv36EOyf7Kvvu5FNE3cE14AOikjuC8jYMwHkhKtDDt8CxBg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+
+Hi,
+
+On Thu, Aug 15, 2013 at 10:08 AM, Woody Wu <narkewoody@gmail.com> wrote:
+> Hi,
+>
+> Near the end of kernel startup, there is a message 'Freeing init memory
+> ..'. This process on embedded system takes several seconds. After
+> searched kernel source, however, I cannot find the same literal text in
+> all the .c files.
+rgrep 'Freeing' . on kernell source give me a lot of output. I believe
+you're looking on arm for that one:
+arch/arm/mm/init.c:             printk(KERN_INFO "Freeing %s memory:
+%dK\n", s, size);
+So, I want to know, who was printing this message and
+> how can I disable the behavior to save some boot time since I don't care
+> losting of several hundreds kilo bytes of memory.
+>
+> Thanks in advance.
+> woody
+>
+> --
+> I can't go back to yesterday - because I was a different person then
+>
+> _______________________________________________
+> Kernelnewbies mailing list
+> Kernelnewbies@kernelnewbies.org
+> http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+
+Cheers,
+
+marek
+
+-- 
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
+
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
+
+
+
+------------------------------
+
+Message: 3
+Date: Thu, 15 Aug 2013 16:51:21 +0800
+From: Woody Wu <narkewoody@gmail.com>
+Subject: Re: Who is 'Freeing init memory ...'
+To: Belisko Marek <marek.belisko@gmail.com>
+Cc: Kernel Newbies <kernelnewbies@kernelnewbies.org>
+Message-ID: <20130815085121.GA20218@zuhnb712.ap.bm.net>
+Content-Type: text/plain; charset=us-ascii
+
+On Thu, Aug 15, 2013 at 10:41:39AM +0200, Belisko Marek wrote:
+> Hi,
+> 
+> On Thu, Aug 15, 2013 at 10:08 AM, Woody Wu <narkewoody@gmail.com> wrote:
+> > Hi,
+> >
+> > Near the end of kernel startup, there is a message 'Freeing init memory
+> > ..'. This process on embedded system takes several seconds. After
+> > searched kernel source, however, I cannot find the same literal text in
+> > all the .c files.
+> rgrep 'Freeing' . on kernell source give me a lot of output. I believe
+> you're looking on arm for that one:
+> arch/arm/mm/init.c:             printk(KERN_INFO "Freeing %s memory:
+> %dK\n", s, size);
+
+Yes, thank you very much!  Now I want to disable the 'Freeing' behavior
+to reduce boot time, is there a kernel config or cmdline option? I am
+not sure if I can disable CONFIG_HIGHMEM to archive this purpose.
+
+> So, I want to know, who was printing this message and
+> > how can I disable the behavior to save some boot time since I don't care
+> > losting of several hundreds kilo bytes of memory.
+> >
+> > Thanks in advance.
+> > woody
+> >
+> > --
+> > I can't go back to yesterday - because I was a different person then
+> >
+> > _______________________________________________
+> > Kernelnewbies mailing list
+> > Kernelnewbies@kernelnewbies.org
+> > http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+> 
+> Cheers,
+> 
+> marek
+> 
+> -- 
+> as simple and primitive as possible
+> -------------------------------------------------
+> Marek Belisko - OPEN-NANDRA
+> Freelance Developer
+> 
+> Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+> Tel: +421 915 052 184
+> skype: marekwhite
+> twitter: #opennandra
+> web: http://open-nandra.com
+
+-- 
+I can't go back to yesterday - because I was a different person then
+
+
+
+------------------------------
+
+Message: 4
+Date: Thu, 15 Aug 2013 17:29:05 +0800
+From: bill4carson <bill4carson@gmail.com>
+Subject: Re: Who is 'Freeing init memory ...'
+To: Woody Wu <narkewoody@gmail.com>
+Cc: Belisko Marek <marek.belisko@gmail.com>,	Kernel Newbies
+	<kernelnewbies@kernelnewbies.org>
+Message-ID: <520C9F61.4020201@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+
+
+
+On 2013?08?15? 16:51, Woody Wu wrote:
+> On Thu, Aug 15, 2013 at 10:41:39AM +0200, Belisko Marek wrote:
+>> Hi,
+>>
+>> On Thu, Aug 15, 2013 at 10:08 AM, Woody Wu<narkewoody@gmail.com>  wrote:
+>>> Hi,
+>>>
+>>> Near the end of kernel startup, there is a message 'Freeing init memory
+>>> ..'. This process on embedded system takes several seconds. After
+>>> searched kernel source, however, I cannot find the same literal text in
+>>> all the .c files.
+>> rgrep 'Freeing' . on kernell source give me a lot of output. I believe
+>> you're looking on arm for that one:
+>> arch/arm/mm/init.c:             printk(KERN_INFO "Freeing %s memory:
+>> %dK\n", s, size);
+>
+> Yes, thank you very much!  Now I want to disable the 'Freeing' behavior
+> to reduce boot time, is there a kernel config or cmdline option? I am
+> not sure if I can disable CONFIG_HIGHMEM to archive this purpose.
+
+
+Why not bother to read the code?
+
+712 void free_initmem(void)
+713 {
+714 #ifdef CONFIG_HAVE_TCM
+715         extern char __tcm_start, __tcm_end;
+716
+717         totalram_pages += free_area(__phys_to_pfn(__pa(&__tcm_start)),
+718                                     __phys_to_pfn(__pa(&__tcm_end)),
+719                                     "TCM link");
+720 #endif
+721
+722         if (!machine_is_integrator() && !machine_is_cintegrator())
+723                 totalram_pages += free_area(__phys_to_pfn(__pa(__init_begin)),
+724                                             __phys_to_pfn(__pa(__init_end)),
+725                                             "init");
+726 }
+727
+
+
+
+478 static inline int free_area(unsigned long pfn, unsigned long end, char *s)
+479 {
+480         unsigned int pages = 0, size = (end - pfn) << (PAGE_SHIFT - 10);
+481
+482         for (; pfn < end; pfn++) {
+483                 struct page *page = pfn_to_page(pfn);
+484                 ClearPageReserved(page);
+485                 init_page_count(page);
+486                 __free_page(page);
+487                 pages++;
+488         }
+489
+490         if (size && s)
+491                 printk(KERN_INFO "Freeing %s memory: %dK\n", s, size);
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Does this really mean operations before the "Freeing init memory" cause the delay????
+You want to bypass "Now I want to disable the 'Freeing' behavior", are you kidding?
+
+Please select printk timing the kernel hacking to find out where the delay actually lies.
+
+
+
+>> So, I want to know, who was printing this message and
+>>> how can I disable the behavior to save some boot time since I don't care
+>>> losting of several hundreds kilo bytes of memory.
+>>>
+>>> Thanks in advance.
+>>> woody
+>>>
+>>> --
+>>> I can't go back to yesterday - because I was a different person then
+>>>
+>>> _______________________________________________
+>>> Kernelnewbies mailing list
+>>> Kernelnewbies@kernelnewbies.org
+>>> http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+>>
+>> Cheers,
+>>
+>> marek
+>>
+>> --
+>> as simple and primitive as possible
+>> -------------------------------------------------
+>> Marek Belisko - OPEN-NANDRA
+>> Freelance Developer
+>>
+>> Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+>> Tel: +421 915 052 184
+>> skype: marekwhite
+>> twitter: #opennandra
+>> web: http://open-nandra.com
+>
+
+-- 
+?????????,??????????
+
+--bill
+
+
+
+------------------------------
+
+Message: 5
+Date: Thu, 15 Aug 2013 17:40:39 +0800
+From: Woody Wu <narkewoody@gmail.com>
+Subject: Re: Who is 'Freeing init memory ...'
+To: bill4carson <bill4carson@gmail.com>
+Cc: Belisko Marek <marek.belisko@gmail.com>,	Kernel Newbies
+	<kernelnewbies@kernelnewbies.org>
+Message-ID: <20130815094039.GB20218@zuhnb712.ap.bm.net>
+Content-Type: text/plain; charset=utf-8
+
+On Thu, Aug 15, 2013 at 05:29:05PM +0800, bill4carson wrote:
+> 
+> 
+> On 2013?08?15? 16:51, Woody Wu wrote:
+> >On Thu, Aug 15, 2013 at 10:41:39AM +0200, Belisko Marek wrote:
+> >>Hi,
+> >>
+> >>On Thu, Aug 15, 2013 at 10:08 AM, Woody Wu<narkewoody@gmail.com>  wrote:
+> >>>Hi,
+> >>>
+> >>>Near the end of kernel startup, there is a message 'Freeing init memory
+> >>>..'. This process on embedded system takes several seconds. After
+> >>>searched kernel source, however, I cannot find the same literal text in
+> >>>all the .c files.
+> >>rgrep 'Freeing' . on kernell source give me a lot of output. I believe
+> >>you're looking on arm for that one:
+> >>arch/arm/mm/init.c:             printk(KERN_INFO "Freeing %s memory:
+> >>%dK\n", s, size);
+> >
+> >Yes, thank you very much!  Now I want to disable the 'Freeing' behavior
+> >to reduce boot time, is there a kernel config or cmdline option? I am
+> >not sure if I can disable CONFIG_HIGHMEM to archive this purpose.
+> 
+> 
+> Why not bother to read the code?
+> 
+> 712 void free_initmem(void)
+> 713 {
+> 714 #ifdef CONFIG_HAVE_TCM
+> 715         extern char __tcm_start, __tcm_end;
+> 716
+> 717         totalram_pages += free_area(__phys_to_pfn(__pa(&__tcm_start)),
+> 718                                     __phys_to_pfn(__pa(&__tcm_end)),
+> 719                                     "TCM link");
+> 720 #endif
+> 721
+> 722         if (!machine_is_integrator() && !machine_is_cintegrator())
+> 723                 totalram_pages += free_area(__phys_to_pfn(__pa(__init_begin)),
+> 724                                             __phys_to_pfn(__pa(__init_end)),
+> 725                                             "init");
+> 726 }
+> 727
+> 
+> 
+> 
+> 478 static inline int free_area(unsigned long pfn, unsigned long end, char *s)
+> 479 {
+> 480         unsigned int pages = 0, size = (end - pfn) << (PAGE_SHIFT - 10);
+> 481
+> 482         for (; pfn < end; pfn++) {
+> 483                 struct page *page = pfn_to_page(pfn);
+> 484                 ClearPageReserved(page);
+> 485                 init_page_count(page);
+> 486                 __free_page(page);
+> 487                 pages++;
+> 488         }
+> 489
+> 490         if (size && s)
+> 491                 printk(KERN_INFO "Freeing %s memory: %dK\n", s, size);
+>                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 
+> Does this really mean operations before the "Freeing init memory" cause the delay????
+> You want to bypass "Now I want to disable the 'Freeing' behavior", are you kidding?
+> 
+
+I also quickly go through the code, also found that the message was
+printed after the freeing job was done. At that moment I did not think
+too carefully, just wanted to disable the 'freeing' procedure then see
+what will happen.  Yes, you are right, delay should caused by things
+afterwards. I will check that with printk timing.  See you & thanks!
+
+
+> Please select printk timing the kernel hacking to find out where the delay actually lies.
+> 
+> 
+> 
+> >>So, I want to know, who was printing this message and
+> >>>how can I disable the behavior to save some boot time since I don't care
+> >>>losting of several hundreds kilo bytes of memory.
+> >>>
+> >>>Thanks in advance.
+> >>>woody
+> >>>
+> >>>--
+> >>>I can't go back to yesterday - because I was a different person then
+> >>>
+> >>>_______________________________________________
+> >>>Kernelnewbies mailing list
+> >>>Kernelnewbies@kernelnewbies.org
+> >>>http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+> >>
+> >>Cheers,
+> >>
+> >>marek
+> >>
+> >>--
+> >>as simple and primitive as possible
+> >>-------------------------------------------------
+> >>Marek Belisko - OPEN-NANDRA
+> >>Freelance Developer
+> >>
+> >>Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+> >>Tel: +421 915 052 184
+> >>skype: marekwhite
+> >>twitter: #opennandra
+> >>web: http://open-nandra.com
+> >
+> 
+> -- 
+> ?????????,??????????
+> 
+> --bill
+
+-- 
+I can't go back to yesterday - because I was a different person then
+
+
+
+------------------------------
+
+Message: 6
+Date: Thu, 15 Aug 2013 20:24:21 +0800
+From: loody <miloody@gmail.com>
+Subject: how to know which cpu current process run
+To: "kernelnewbies@kernelnewbies.org"
+	<kernelnewbies@kernelnewbies.org>
+Message-ID:
+	<CANudz+t_3nOefwarGbG4_-TvDXix+qoma=Od+S-1B1hj=7-uiQ@mail.gmail.com>
+Content-Type: text/plain; charset=ISO-8859-1
+
+hi all:
+is there any shell command or tool can let me know which cpu current
+process run on?
+
+
+-- 
+Thanks for your help
+
+
+
+------------------------------
+
+Message: 7
+Date: Thu, 15 Aug 2013 08:57:57 -0400
+From: Valdis.Kletnieks@vt.edu
+Subject: Re: how to know which cpu current process run
+To: loody <miloody@gmail.com>
+Cc: "kernelnewbies@kernelnewbies.org"
+	<kernelnewbies@kernelnewbies.org>
+Message-ID: <38107.1376571477@turing-police.cc.vt.edu>
+Content-Type: text/plain; charset="us-ascii"
+
+On Thu, 15 Aug 2013 20:24:21 +0800, loody said:
+> is there any shell command or tool can let me know which cpu current
+> process run on?
+
+Why are you trying to check from the shell?  What problem are you
+trying to solve by knowing which CPU?
+
+(The problem is that it's inherently *very* racy - the process could easily
+get bounced across 2 or 3 different CPUs in the amount of time it takes
+a shell command to check - and on large SGI UV boxes under sufficient memory
+thrashing, it could bounce across 50 or 60 different cores while you check).
+
+And checking the *current* process tells you even less than "checking the
+process you care about" - because unless it's a shell builtin, when you
+launch the command, it will quite possibly end up on some core other than
+the one the shell is running on....
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 865 bytes
+Desc: not available
+Url : http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130815/ee2ccdef/attachment-0001.bin 
+
+------------------------------
+
+Message: 8
+Date: Thu, 15 Aug 2013 21:28:45 +0800
+From: loody <miloody@gmail.com>
+Subject: Re: how to know which cpu current process run
+To: Valdis.Kletnieks@vt.edu
+Cc: "kernelnewbies@kernelnewbies.org"
+	<kernelnewbies@kernelnewbies.org>
+Message-ID:
+	<CANudz+saMDZW-mMTtguPUGLWLP+B9p6WnLzHvCZM5fd=91LKxQ@mail.gmail.com>
+Content-Type: text/plain; charset="iso-8859-1"
+
+hi Valdis:
+Thanks for your kind reply :)
+2013/8/15  <Valdis.Kletnieks@vt.edu>:
+> On Thu, 15 Aug 2013 20:24:21 +0800, loody said:
+>> is there any shell command or tool can let me know which cpu current
+>> process run on?
+>
+> Why are you trying to check from the shell?  What problem are you
+> trying to solve by knowing which CPU?
+I adopt one sample code which uses sched_setaffinity to force user
+program running on core#1, suppose my environment has core#0 and
+core#1.
+
+Theoretically, it is ONLY run on core#1.
+When I use top, I cannot tell whether it runs on core#0 or core#1, so
+I wrote this letter to ask help any tool checking what cpu this
+program ran on.
+i also attach my program for all your reference.
+
+>And checking the *current* process tells you even less than "checking the
+>process you care about" - because unless it's a shell builtin, when you
+>launch the command, it will quite possibly end up on some core other than
+>the one the shell is running on....
+
+it seems I use wrong way to express what I need.
+I need any tool to check whether the process I assigned to cpu with
+sched_setaffinity  did work.
+
+-- 
+Regards,
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: affinity.sample.c
+Type: text/x-csrc
+Size: 1281 bytes
+Desc: not available
+Url : http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130815/3bb168ab/attachment.bin 
+
+------------------------------
+
+_______________________________________________
+Kernelnewbies mailing list
+Kernelnewbies@kernelnewbies.org
+http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+
+
+End of Kernelnewbies Digest, Vol 33, Issue 26
+*********************************************

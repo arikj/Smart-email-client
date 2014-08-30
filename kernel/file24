@@ -1,0 +1,87 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 31, Issue 8
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. UDP max packet size (Pietro Paolini)
+   2. Re: UDP max packet size (Victor Buciuc)
+   3. Re: UDP max packet size (Bernd Petrovitsch)
+   4. File system Query (Dibyayan Chakraborty)
+   5. Re: File system Query (Valdis.Kletnieks@vt.edu)
+   6. Re: File system Query (Dibyayan Chakraborty)
+   7. Re: File system Query (Valdis.Kletnieks@vt.edu)
+   8. Sending an ICMP packet with ip_local_out (Adel Qodmani)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Thu, 13 Jun 2013 10:13:09 +0200
+From: Pietro Paolini <pulsarpietro@aol.com>
+Subject: UDP max packet size
+To: "kernelnewbies@kernelnewbies.org"
+	<Kernelnewbies@kernelnewbies.org>
+Message-ID: <3ACBE6F3-F1B0-422F-A2CA-D74A5EB8F728@aol.com>
+Content-Type: text/plain; charset=us-ascii
+
+Hello all,
+
+I am not sure this newsletter is the right place to post that kind question then excuse me in advance is I am wrong and suggest me a good place where do that.
+
+I am trying to perform a simple but a little tricky task: I have to understand the maximum payload size of an UDP packet in order to avoid fragmentation of that.
+
+Some suggestions ?
+
+P.
+
+
+
+
+------------------------------
+
+Message: 2
+Date: Thu, 13 Jun 2013 11:40:34 +0300
+From: Victor Buciuc <victor.buciuc@gmail.com>
+Subject: Re: UDP max packet size
+To: Pietro Paolini <pulsarpietro@aol.com>
+Cc: "kernelnewbies@kernelnewbies.org"
+	<Kernelnewbies@kernelnewbies.org>
+Message-ID:
+	<CAKop=Lj8jjzuv7LRw44DO47mXyJYqwK8yv796543PubXdhVPug@mail.gmail.com>
+Content-Type: text/plain; charset="iso-8859-1"
+
+On Thu, Jun 13, 2013 at 11:13 AM, Pietro Paolini <pulsarpietro@aol.com>wrote:
+
+> Hello all,
+>
+> I am not sure this newsletter is the right place to post that kind
+> question then excuse me in advance is I am wrong and suggest me a good
+> place where do that.
+>
+> I am trying to perform a simple but a little tricky task: I have to
+> understand the maximum payload size of an UDP packet in order to avoid
+> fragmentation of that.
+>
+> Some suggestions ?
+>
+> P.
+>
+>
+You should totally google it. There's a lot of stuff on what you're looking
+for, like:
+http://linux.derkeiler.com/Newsgroups/comp.os.linux.networking/2004-02/0873.

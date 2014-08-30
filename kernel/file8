@@ -1,0 +1,165 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 32, Issue 26
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. Re: Linux Kernel and Device Drivers (anish singh)
+   2. Re: How to benchmark my OS (shiek kaleem)
+   3. Git gui tools for linux (Anand Moon)
+   4. RE: Git gui tools for linux (Rajat Sharma)
+   5. Re: Git gui tools for linux (Gabriel Duarte)
+   6. [PATCH] zram percpu implementation (mani)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Tue, 16 Jul 2013 22:13:33 +0530
+From: anish singh <anish198519851985@gmail.com>
+Subject: Re: Linux Kernel and Device Drivers
+To: Satya Prakash Prasad <unixkernel497@gmail.com>
+Cc: Srinivas Ganji <srinivasganji.kernel@gmail.com>,	kernelnewbies
+	<kernelnewbies@kernelnewbies.org>
+Message-ID:
+	<CAK7N6vpo8tzXE1LQ9x8hJFm9=HQjUXgc9H-rz6mA5s9yYxaBww@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+
+On Tue, Jul 16, 2013 at 12:42 PM, Satya Prakash Prasad
+<unixkernel497@gmail.com> wrote:
+> Thanks .. I have another question. I was trying to practice some kernel
+> process management APIs as in
+> http://reiber.org/nxt/pub/Linux/LinuxKernelDevelopment/Linux.Kernel.Development.3rd.Edition.pdf
+> (Linux Kernel Development by Robert Love, 3rd edition).
+>
+> I am not sure how to practice the code snippet given in the text book. I can
+> understand the theory but do not find a way to practice. For example: I want
+> to read a process 'struct task_struct' to find it parent's process
+> identifier, how many tasks are in which state, creating kernel threads etc?
+In that case start from creating a dummy driver and do everything there.
+>
+> Any idea?
+>
+>
+> On Mon, Jul 15, 2013 at 2:32 PM, Srinivas Ganji
+> <srinivasganji.kernel@gmail.com> wrote:
+>>
+>> As per as I know, you can follow two text books.
+>>
+>> 1. Linux Kernel Development by Robert Love, 3rd edition.
+>> 2. Linux Device Drivers by Alessandro Rubini, Jonathan Corbet, Greh
+>> Kroah-Hartman. 3rd edition.
+>>
+>> At the same time, you can practice the exercises given in the text books -
+>> practice makes a man perfect. The other thing is "Make your hands dirty by
+>> digging the kernel code whenever you have a doubt".
+>>
+>> Regards,
+>> Srinivas
+>>
+>>
+>>
+>>
+>> On Mon, Jul 15, 2013 at 2:06 PM, Satya Prakash Prasad
+>> <unixkernel497@gmail.com> wrote:
+>>>
+>>> Please let me know how to study and get hands on experience on Linux
+>>> Kernel and Device Drivers?
+>>>
+>>> Regards,
+>>> Prakash
+>>>
+>>> _______________________________________________
+>>> Kernelnewbies mailing list
+>>> Kernelnewbies@kernelnewbies.org
+>>> http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+>>>
+>>
+>
+>
+> _______________________________________________
+> Kernelnewbies mailing list
+> Kernelnewbies@kernelnewbies.org
+> http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+>
+
+
+
+------------------------------
+
+Message: 2
+Date: Tue, 16 Jul 2013 23:03:44 +0530
+From: shiek kaleem <shiek.kaleem@gmail.com>
+Subject: Re: How to benchmark my OS
+To: bill4carson <bill4carson@gmail.com>
+Cc: Steven Zhou <lullaby2005@gmail.com>,
+	kernelnewbies@kernelnewbies.org
+Message-ID:
+	<CAP+2-pxVLtf9e1Xjn+N-SQPjv2Ef2a_ACXff8SYuc_ooCZ0JMQ@mail.gmail.com>
+Content-Type: text/plain; charset="gb2312"
+
+Hi Guys ,
+
+Just the same question from my side is there any guidelines i can follow if
+I have created my own OS.(LFS)
+
+
+On Mon, Jul 15, 2013 at 12:26 PM, bill4carson <bill4carson@gmail.com> wrote:
+
+> Hello Steven
+>
+> On 2013?07?15? 10:56, Steven Zhou wrote:
+> > Hi,
+> >
+> > We have developed our private OS and we want to benchmark the
+> performance of it, including time of context switch, interrupt latency, IO
+> output and so on ...
+>                      ^^^^^^^^^^^^^^^
+>             To what degree does "private" goes? Is your private OS an
+> newly created one from scratch or based on one of open source version?
+>
+>
+> >
+> > We want to study from Linux firstly, so could you guys give me some
+> guide of Linux benchmark testing, including test methodologies, test code
+> and so on.
+> >
+> > Thanks in advance.
+> >
+> > --
+> > Best Regards.
+> >
+> >
+> >
+> > _______________________________________________
+> > Kernelnewbies mailing list
+> > Kernelnewbies@kernelnewbies.org
+> > http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+>
+> --
+> ?????????,??????????
+>
+> --bill
+>
+> _______________________________________________
+> Kernelnewbies mailing list
+> Kernelnewbies@kernelnewbies.org
+> http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130716/04854aa8/attachment-0001.

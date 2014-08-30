@@ -1,0 +1,193 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 32, Issue 38
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. Re: Where is the system call table in linux kernel v3.9?
+      (Srinivas Ganji)
+   2. Re: Where is the system call table in linux kernel v3.9?
+      (Iker Pedrosa)
+   3. Re: Notifier chains (Adel Qodmani)
+   4. Re: preemptive kernels and the use of smp_processor_id()
+      (Valdis.Kletnieks@vt.edu)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Tue, 23 Jul 2013 11:11:16 +0530
+From: Srinivas Ganji <srinivasganji.kernel@gmail.com>
+Subject: Re: Where is the system call table in linux kernel v3.9?
+To: Iker Pedrosa <ikerpedrosam@gmail.com>
+Cc: kernelnewbies@kernelnewbies.org
+Message-ID:
+	<CAMVKQhV-Z2=u0wAQq3rHPgRyMuq=2vHJ4LPeeb_2YqxQ00nkZw@mail.gmail.com>
+Content-Type: text/plain; charset="iso-8859-1"
+
+Hi Iker Pedrosa,
+
+Have you completed with your own directory implementation? If you see any
+issues, please let me know.
+
+Regards,
+Srinivas.
+
+
+On Sat, Jul 20, 2013 at 4:13 PM, Iker Pedrosa <ikerpedrosam@gmail.com>wrote:
+
+> Thank you very much to everybody. I've tried Sudip Mukherjee's approach
+> and it has worked (the table is in arch/x86/syscalls/syscall_32.tbl). Now,
+> I'm going to try to create my own directory in kernel source which contains
+> my system call implementation files as Srinivas Ganji has proposed.
+>
+> On Fri, 19 Jul 2013 12:15:44 +0530
+> Srinivas Ganji <srinivasganji.kernel@gmail.com> wrote:
+>
+> > Hi Iker Pedrosa,
+> >
+> > In old versions of Linux kernels like 2.6.xx, the approach was different
+> > from Linux version 3.3 on wards.
+> >
+> > There are two different approaches to implement own system call. Each
+> > approach involves several steps. The difference between two approaches
+> is,
+> > in one approach, we implement our system call in already existing file of
+> > kernel sources. In another approach, we created our own directory in
+> kernel
+> > source which contains our system call implementation files. Ans in this
+> > second approach, we need to modify the Kernel Makefiles and Configuration
+> > files to include our newly created directory and its contents. First let
+> us
+> > implement using the first approach.
+> >
+> > The following approach was successfully tested in Linux kernel 3.5.7
+> > version sources for x86 32-bit architecture.
+> >
+> > Here are the steps to create our own system call in the existing kernel
+> > sources. The paths given below are relative paths from /usr/src/linux.
+> >
+> > 1. Generally, add the function (system call) definition in kernel/sys.c
+> > file.
+> >
+> > /* this is the implementation of our system call */
+> > asmlinkage long sys_helloworld(void) {
+> >        printk(KERN_EMERG "Hello, world!\n");
+> > return 0;
+> > }
+> >
+> > 2. Add the function prototype in the header file include/linux/syscalls.h
+> >
+> > asmlinkage long sys_helloworld(void);
+> >
+> > 3. Create an entry in system call table in the
+> > file arch/x86/syscalls/syscall_32.tbl
+> >
+> > 350     i386    helloworld             sys_helloworld
+> >
+> > Note: In my case already table had 349 offsets, so I added it as 350.
+> >
+> > 4. If we want to create our own kernel images, then change the
+> EXTRAVERSION
+> > in the main Makefile available at /usr/src/linux
+> >
+> > EXTRAVERSION = .ownsyscall
+> >
+> > 5. Then, build the modules from the main directory with the following.
+> >
+> > make menuconfig  --- Just save and exit.
+> > make modules
+> > make modules_install
+> > make install
+> >
+> > 6. Now, reboot with our own image.
+> >
+> > 7. Write a simple C application for calling the our own system call.
+> >
+> > #include <stdio.h>
+> >
+> > /* sys_helloworld 350 */
+> > int main ()
+> > {
+> > syscall(350); /* 350 is our system calls offset number */
+> > return 0;
+> > }
+> >
+> > I hope, you understand it clearly and it helps you. Based on this, you
+> can
+> > practice the second approach. It needs of creating our own directory and
+> > files (C, Makefile, Kconfig) and modifications required in architecture
+> > specific Kconfig.
+> >
+> > Regards,
+> > Srinivas.
+> >
+> >
+> > On Thu, Jul 18, 2013 at 2:34 PM, Iker Pedrosa <ikerpedrosam@gmail.com
+> >wrote:
+> >
+> > > Hi Guys,
+> > >
+> > > I am a newbie to linux kernel and I am trying to do some of the
+> > > exercises/examples of the Linux Kernel Development book by Robert
+> Love. For
+> > > the moment I'm trying to create a system call (Chapter 5) but I am
+> unable
+> > > to do the first step which states the following:
+> > > "Add an entry to the end of the system call table.This needs to be done
+> > > for each architecture that supports the system call (which, for most
+> calls,
+> > > is all the architectures).The position of the syscall in the table,
+> > > starting at zero, is its system call number. For example, the tenth
+> entry
+> > > in the list is assigned syscall number nine."
+> > >
+> > > My problem is that I am unable to find the file that holds the table.
+> In
+> > > the book the file that needs to be changed is the entry.S but it no
+> longers
+> > > exists in v3.9. In an example that I have found on the internet, which
+> is
+> > > done using v3.0, the file to change is syscall_table_32.S. But I've
+> got the
+> > > same problem, it doesn't exist. So anybody can help me to find the
+> table? I
+> > > know that I should be using v2.6 of the kernel but I don't know if that
+> > > version will work with the distribution that I'm using.
+> > >
+> > > The question is also in stackoverflow so if someone wants to answer
+> there
+> > > I won't have any problem. The link to the page is the following:
+> > >
+> http://stackoverflow.com/questions/17652555/where-is-the-system-call-table-in-linux-kernel-v3-9
+> > >
+> > > --
+> > > Iker Pedrosa <ikerpedrosam@gmail.com>
+> > >
+> > > _______________________________________________
+> > > Kernelnewbies mailing list
+> > > Kernelnewbies@kernelnewbies.org
+> > > http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+> > >
+>
+>
+> --
+> Iker Pedrosa <ikerpedrosam@gmail.com>
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130723/5b27f09b/attachment-0001.

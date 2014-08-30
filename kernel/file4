@@ -1,0 +1,197 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 32, Issue 22
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. Recall: Kernelnewbies Digest, Vol 32, Issue 20 (Murali Annamneni)
+   2. Re: Inline Macro issue (Mandeep Sandhu)
+   3. Re: Inline Macro issue (Saket Sinha)
+   4. Re: Kernelnewbies Digest, Vol 32, Issue 20 (Saket Sinha)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Mon, 15 Jul 2013 12:19:57 +0000
+From: Murali Annamneni <a.murali@hcl.com>
+Subject: Recall: Kernelnewbies Digest, Vol 32, Issue 20
+To: "saket.sinha89@gmail.com" <saket.sinha89@gmail.com>
+Cc: "kernelnewbies@kernelnewbies.org"
+	<kernelnewbies@kernelnewbies.org>
+Message-ID:
+	<ED035263445C4F4D872E678FD0A7CBE401562AFC@chn-hclt-mbs06.HCLT.CORP.HCL.IN>
+	
+Content-Type: text/plain; charset="us-ascii"
+
+Murali Annamneni would like to recall the message, "Kernelnewbies Digest, Vol 32, Issue 20".
+
+
+::DISCLAIMER::
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+The contents of this e-mail and any attachment(s) are confidential and intended for the named recipient(s) only.
+E-mail transmission is not guaranteed to be secure or error-free as information could be intercepted, corrupted,
+lost, destroyed, arrive late or incomplete, or may contain viruses in transmission. The e mail and its contents
+(with or without referred errors) shall therefore not attach any liability on the originator or HCL or its affiliates.
+Views or opinions, if any, presented in this email are solely those of the author and may not necessarily reflect the
+views or opinions of HCL or its affiliates. Any form of reproduction, dissemination, copying, disclosure, modification,
+distribution and / or publication of this message without the prior written consent of authorized representative of
+HCL is strictly prohibited. If you have received this email in error please delete it and notify the sender immediately.
+Before opening any email and/or attachments, please check them for viruses and other defects.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+------------------------------
+
+Message: 2
+Date: Mon, 15 Jul 2013 18:08:45 +0530
+From: Mandeep Sandhu <mandeepsandhu.chd@gmail.com>
+Subject: Re: Inline Macro issue
+To: Saket Sinha <saket.sinha89@gmail.com>
+Cc: Anish Singh <anish198519851985@gmail.com>,	Srinivas Ganji
+	<srinivasganji.kernel@gmail.com>,	kernelnewbies
+	<kernelnewbies@kernelnewbies.org>
+Message-ID:
+	<CAC+QLdS_=ec1Gt4HS+aw6Am6G1NPWr6ZxAWJvPqSRL0tXgtnyQ@mail.gmail.com>
+Content-Type: text/plain; charset="iso-8859-1"
+
+On Mon, Jul 15, 2013 at 6:03 PM, Saket Sinha <saket.sinha89@gmail.com>wrote:
+
+> Mandeep:
+>
+> Even this hasnt helped..though it was a btight idea. :(
+>
+
+And what _exact_ error does the compiler give if you use the new (modified)
+macro?
+
+The re-def error should not be there as the variable "new1" is within the
+local scope now.
+
+-mandeep
+
+
+
+>
+>
+> P.S.-I can give my system on remote via Team Viewer, if you want to try.
+>
+> Regards,
+> Saket Sinha
+>
+>
+> On Mon, Jul 15, 2013 at 5:39 PM, Mandeep Sandhu <
+> mandeepsandhu.chd@gmail.com> wrote:
+>
+>> How about:
+>>
+>> #define push_root() \
+>> 	recursive_mutex_lock(&context->id_lock);	\
+>> 	context->uid = current->fsuid;			\
+>> 	context->gid = current->fsgid;			\
+>>         do {                                            \
+>>             struct cred *new1 = prepare_creds();           \
+>>
+>> //make changes to any member of this structure \
+>>
+>>             commit_creds(new1);                            \
+>>         } while(0);
+>>
+>> HTH,
+>>
+>> -mandeep
+>>
+>>
+>>
+>>
+>> On Mon, Jul 15, 2013 at 5:27 PM, Saket Sinha <saket.sinha89@gmail.com>wrote:
+>>
+>>> Here is the macro
+>>>
+>>> https://github.com/HeisSpiter/hepunion/blob/master/fs/hepunion/hepunion.h#L393
+>>>
+>>> Now this driver is at 2.6.18 kernel. I have to upgrade it to 3.8.3.
+>>> As I have said
+>>> "current" in kernel is a global macro, that always point to the "struct
+>>> task_struct * " of the currently executing task (for details on
+>>> task_struct, ref Robert Love, pg 24-27).
+>>>
+>>>
+>>> https://github.com/HeisSpiter/hepunion/blob/master/fs/hepunion/hepunion.h#L397
+>>>
+>>> Now if you look at thse two lines-
+>>>
+>>> current->fsuid = 0; \
+>>> current->fsgid = 0
+>>>
+>>> Now task struct does not contain fsuid and fsgid, instead you have
+>>> struct cred containing fsuid and fsgid.
+>>> http://lxr.free-electrons.com/source/include/linux/cred.h#L102
+>>>
+>>> So normal method is
+>>> struct cred *new1;
+>>> new1 =prepare_creds();
+>>> //make changes to any member of this structure
+>>> commit_creds(new1);
+>>>
+>>> Now this above action I need to perform through a macro, in order to
+>>> bring minimal changes to the driver.
+>>>
+>>> Now, I have told everything. Can someone suggest something that might
+>>> work.
+>>>
+>>> Regards,
+>>> Saket Sinha
+>>>
+>>>
+>>>
+>>>
+>>>
+>>> On Mon, Jul 15, 2013 at 5:07 PM, Mandeep Sandhu <
+>>> mandeepsandhu.chd@gmail.com> wrote:
+>>>
+>>>>
+>>>> On Mon, Jul 15, 2013 at 4:50 PM, Saket Sinha <saket.sinha89@gmail.com>wrote:
+>>>>
+>>>>> Mandip:
+>>>>> Error is expected error or declaration at the end of input
+>>>>>
+>>>>
+>>>> Without looking at the code, it's difficult to comment further.
+>>>>
+>>>> Can you attach a small compilable example which exhibits the error?
+>>>>
+>>>> -mandeep
+>>>>
+>>>>
+>>>>
+>>>>>  Anish:
+>>>>> that '\' should not be there first of all and even if I put it same
+>>>>> error
+>>>>>
+>>>>>
+>>>>
+>>>
+>>
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130715/85144628/attachment-0001.

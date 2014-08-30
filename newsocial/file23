@@ -1,0 +1,127 @@
+Receiver: Bhavishya Mittal <bhavishya235@gmail.com>
+Sender: ('Google Android Group Members', 'group-digests@linkedin.com')
+Subject:[2] discussions, [8] comments and [2] jobs on LinkedIn
+Body: Google Android
+  Today's new discussions from Google Android group members.  Change the frequency of this digest:
+  http://www.linkedin.com/e/s9mgoq-hkbf5bnd-3t/ahs/76373/EMLt_anet_settings/?hs=false&tok=13r93UW1ZX2BU1
+
+
+
+
+
+
+Send me an email for each new discussion &#187; http://www.linkedin.com/e/s9mgoq-hkbf5bnd-3t/snp/76373/true/grp_email_subscribe_new_posts/?hs=false&tok=0jhiKSqy1X2BU1
+
+
+Active Discussion of the day
+
+ * Rahul jha started a discussion on a news article:
+  guyes I want do start developing android apps. how to start? (10)
+
+
+
+ View discussion &raquo; http://www.linkedin.com/e/s9mgoq-hkbf5bnd-3t/vai/76373/264164585/member/EMLt_anet_act_disc/?hs=false&tok=3E5UhqjfVX2BU1
+
+
+ * Ramya Devendhiran started a discussion on a news article:
+  Digital Signature Code (6)
+
+
+  > Hi all, I need to develop the code for "Digital signature". I am new to
+  > android. Can anyone suggestion me the way to start? Please help me.
+
+
+ View discussion &raquo; http://www.linkedin.com/e/s9mgoq-hkbf5bnd-3t/vai/76373/263827581/member/EMLt_anet_act_disc/?hs=false&tok=1s_V4HoAJX2BU1
+
+
+ * Jim Wurster started a discussion on a news article:
+  How to change a device in an Eclipse project (4)
+
+
+  > I created an app that works fine on my computer. However, it doesn't
+  > work on actual android devices. I believe the reason is because when I
+  > created the project in Eclipse, I used Google APIs instead of a specific
+  > Android version.
+  > 
+  > So, could this be my problem? If so, how do I change the device in the
+  > project or should I make a copy of the project and change it there in
+  > order to test it?
+
+
+ View discussion &raquo; http://www.linkedin.com/e/s9mgoq-hkbf5bnd-3t/vai/76373/264125248/member/EMLt_anet_act_disc/?hs=false&tok=3vMZsGyJFX2BU1
+
+
+ * Venkatraman Guruswamy started a discussion on a news article:
+  Make TextView if Listview is empty (3)
+
+
+  > Hi All, I am trying to make a textview to display text if my list view
+  > is empty. So by doing this I am getting my textview on top of the
+  > screen, but I want it in center. Below is my xml file...
+  > 
+  > <RelativeLayout
+  > xmlns:android="http://schemas.android.com/apk/res/android"
+  > xmlns:tools="http://schemas.android.com/tools"
+  > android:layout_width="match_parent" android:layout_height="match_parent"
+  > android:paddingBottom="@dimen/activity_vertical_margin"
+  > android:paddingLeft="@dimen/activity_horizontal_margin"
+  > android:paddingRight="@dimen/activity_horizontal_margin"
+  > android:paddingTop="@dimen/activity_vertical_margin" >
+  > 
+  > <ListView android:id="@android:id/list"
+  > android:layout_width="match_parent" android:layout_height="match_parent"
+  > > </ListView>
+  > 
+  > <TextView android:id="@android:id/empty"
+  > android:layout_width="wrap_content" android:layout_height="wrap_content"
+  > android:text="@string/empty_callLog" android:gravity="center" />
+  > 
+  > 
+  > 
+  > </RelativeLayout>
+  > 
+  > and before setting adapter to list view i am checking the size is zero..
+  > if true I am using setEmptyView(textView) ... but it is comming on top
+  > of the screen
+  > 
+  > 
+  > can anybody share some tweaks on how to comply this??
+
+
+ View discussion &raquo; http://www.linkedin.com/e/s9mgoq-hkbf5bnd-3t/vai/76373/264842940/member/EMLt_anet_act_disc/?hs=false&tok=38JJVq-JpX2BU1
+
+
+ * Ron Roehl started a discussion on a news article:
+  Can Android display a Badge over an Application Icon, like on an iPhone or iPad? (2)
+
+
+  > For example, to indicate the number of unread messages, etc... Thanks!
+
+
+ View discussion &raquo; http://www.linkedin.com/e/s9mgoq-hkbf5bnd-3t/vai/76373/265220646/member/EMLt_anet_act_disc/?hs=false&tok=3Xx8l4kRlX2BU1
+
+
+
+New Discussions <span class="anet-digest-count">({0})</span>
+ * Steven Max Patterson LG tries desperately to stand out with the over-sized G2 smartphone
+
+ View discussion &raquo; http://www.linkedin.com/e/s9mgoq-hkbf5bnd-3t/ava/264843053/76373/EMLt_anet_qa_ttle/?hs=false&tok=2eQEEAItpX2BU1
+
+
+ * G.R.Ram kumar How to create Unique format support Video Player?
+
+ View discussion &raquo; http://www.linkedin.com/e/s9mgoq-hkbf5bnd-3t/ava/265043742/76373/EMLt_anet_qa_ttle/?hs=false&tok=1hEV8fShdX2BU1
+
+
+Daily Job Postings * Neil Rimmer: Job; Android Developer (x3) - London
+  Job; Android Developer (x3) - London (0)
+ View discussion &raquo; http://www.linkedin.com/e/s9mgoq-hkbf5bnd-3t/ava/265221171/76373/EMLt_anet_qa_ttle/?hs=false&tok=2j6mlZMZlX2BU1
+
+ * Diederik Leeman +31 6 53832111: I'm Hiring! Android Java software Developer in the  region Rotterdam. For more info see our website: www.employmentservices.nl
+  I'm Hiring! Android Java software Developer in the  region Rotterdam. For more info see our website: www.employmentservices.nl (0)
+ View discussion &raquo; http://www.linkedin.com/e/s9mgoq-hkbf5bnd-3t/ava/265220947/76373/EMLt_anet_qa_ttle/?hs=false&tok=3DRbdfdnZX2BU1
+
+
+
+
+      <

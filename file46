@@ -1,0 +1,168 @@
+Receiver: Bhavishya Mittal <bhavishya235@gmail.com>
+Sender: ('Google Android Group Members', 'group-digests@linkedin.com')
+Subject:[4] discussions, [2] comments and [3] jobs on LinkedIn
+Body: Google Android
+  Today's new discussions from Google Android group members.  Change the frequency of this digest:
+  http://www.linkedin.com/e/s9mgoq-hjbopfcg-4t/ahs/76373/EMLt_anet_settings/?hs=false&tok=0qg6KCWivfvlQ1
+
+
+
+
+
+
+Send me an email for each new discussion &#187; http://www.linkedin.com/e/s9mgoq-hjbopfcg-4t/snp/76373/true/grp_email_subscribe_new_posts/?hs=false&tok=2DuVnVHSLfvlQ1
+
+
+Active Discussion of the day
+
+ * Pavithra Narayanan started a discussion on a news article:
+  How to store radio button values in sqlitedatabase? (1)
+
+
+  > Can anyone help me how to store the radio button values in database
+
+
+ View discussion &raquo; http://www.linkedin.com/e/s9mgoq-hjbopfcg-4t/vai/76373/259152475/member/EMLt_anet_act_disc/?hs=false&tok=1t7UIQFvPfvlQ1
+
+
+ * Mahnoush Babaeizadeh started a discussion on a news article:
+  Why database file do not create in data/data/name of application ? (1)
+
+
+  > Hello
+  > 
+  > I've written an application that relate to log in. User should insert
+  > his username and password to log in. But it has a problem, database file
+  > do not create in data/data/ .... .what should I do for solving this
+  > problem?
+  > 
+  > The code of creating database is as following:
+  > 
+  > public class DbHelper extends SQLiteOpenHelper {
+  > 
+  > 
+  > public static final String DATABASE_NAME="data"; public static final
+  > String TABLE_NAME="Login_table"; public static final String C_ID="_id";
+  > public static final String Username="username"; public static final
+  > String Password="pasword"; public static final int VERSION=1;
+  > 
+  > private final String createDb ="create table if not exists"+ TABLE_NAME
+  > + "("
+  > 
+  > + C_ID + "integer primary key autoincrement , " + Username+ "text , " +
+  > Password + "text);";
+  > 
+  > public DbHelper(Context context) { super(context, DATABASE_NAME, null,
+  > VERSION); }
+  > 
+  > 
+  > @Override public void onCreate(SQLiteDatabase db) {
+  > db.execSQL(createDb); }
+  > 
+  > @Override public void onUpgrade(SQLiteDatabase db, int oldversion, int
+  > newversion) { db.execSQL("drop table" + TABLE_NAME); }
+  > 
+  > }
+  > 
+  > 
+  > 
+  > This code relate to class:
+  > 
+  > public class Side_Fragment extends Fragment { View view; SQLiteDatabase
+  > db; DbHelper dbhelper;
+  > 
+  > @Override public View onCreateView (LayoutInflater inflater, ViewGroup
+  > container, Bundle savedInstanceState) { dbhelper=new
+  > DbHelper(getActivity()); db=dbhelper.getWritableDatabase();
+  > 
+  > view=inflater.inflate(R.layout.activity_main, container, false); Button
+  > login=(Button)view.findViewById(R.id.button1);
+  > login.setOnClickListener(new OnClickListener() {
+  > 
+  > @Override public void onClick(View arg0) {
+  > 
+  > String user,pass;
+  > 
+  > EditText edittext1=(EditText) view.findViewById(R.id.editText1);
+  > EditText edittext2=(EditText) view.findViewById(R.id.editText2);
+  > 
+  > user=edittext1.getText().toString();
+  > pass=edittext2.getText().toString();
+  > 
+  > ContentValues cv=new ContentValues();
+  > 
+  > cv.put(DbHelper.Username, user); cv.put(DbHelper.Password, pass);
+  > 
+  > 
+  > db.insert(DbHelper.TABLE_NAME, null, cv);
+  > 
+  > }
+  > 
+  > });
+  > 
+  > Button query=(Button)view.findViewById(R.id.button2);
+  > query.setOnClickListener(new OnClickListener() {
+  > 
+  > @Override public void onClick(View v)
+  > 
+  > { String[] columns={DbHelper.Username,DbHelper.Password}; Cursor
+  > cursor=db.query(DbHelper.TABLE_NAME, columns, null, null, null, null,
+  > null); cursor.moveToFirst(); while (cursor.moveToNext()) { String user=
+  > cursor.getString(cursor.getColumnIndex(DbHelper.Username));
+  > 
+  > String pass= cursor.getString(cursor.getColumnIndex(DbHelper.Password));
+  > 
+  > MakeToast(getActivity(),"Username="+user+"\nPassword"+pass,
+  > Toast.LENGTH_SHORT).show(); }
+  > 
+  > }
+  > 
+  > private Toast MakeToast(FragmentActivity activity, String string, int
+  > lengthShort) { // TODO Auto-generated method stub return null; }
+  > 
+  > }); return view;
+  > 
+  > 
+  > }
+  > 
+  > }
+
+
+ View discussion &raquo; http://www.linkedin.com/e/s9mgoq-hjbopfcg-4t/vai/76373/258568622/member/EMLt_anet_act_disc/?hs=false&tok=06kFAI-dTfvlQ1
+
+
+
+New Discussions <span class="anet-digest-count">({0})</span>
+ * Nagendra Anisetti Can any one know how to install an Apk file without user confirmation.
+By using intent it is asking for confirmation.
+
+ View discussion &raquo; http://www.linkedin.com/e/s9mgoq-hjbopfcg-4t/ava/257355982/76373/EMLt_anet_qa_ttle/?hs=false&tok=1yHSfP_R_fvlQ1
+
+
+ * Francisco Carrasco S Health: el entrenador que todo usuario necesita
+
+ View discussion &raquo; http://www.linkedin.com/e/s9mgoq-hjbopfcg-4t/ava/259152085/76373/EMLt_anet_qa_ttle/?hs=false&tok=3OIUZqxMvfvlQ1
+
+
+ * William Excell Does anyone know any young talented Android developers in London?
+
+ View discussion &raquo; http://www.linkedin.com/e/s9mgoq-hjbopfcg-4t/ava/259152084/76373/EMLt_anet_qa_ttle/?hs=false&tok=1ZBrPRCzXfvlQ1
+
+
+ * Enrique Medina Tracking phone calls made by users
+
+ View discussion &raquo; http://www.linkedin.com/e/s9mgoq-hjbopfcg-4t/ava/259152299/76373/EMLt_anet_qa_ttle/?hs=false&tok=1xw67FWczfvlQ1
+
+
+Daily Job Postings * Ksenia Shetinkov: A successful start-up looking for an Android Developer, please send CV to Ksenia.Shetinkov@jobinfo.co.il
+  A successful start-up looking for an Android Developer, please send CV to Ksenia.Shetinkov@jobinfo.co.il (0)
+ View discussion &raquo; http://www.linkedin.com/e/s9mgoq-hjbopfcg-4t/ava/259152557/76373/EMLt_anet_qa_ttle/?hs=false&tok=2PiyUflADfvlQ1
+
+ * William Excell: Android Developer - On Demand App - London - Contract
+  Android Developer - On Demand App - London - Contract (0)
+ View discussion &raquo; http://www.linkedin.com/e/s9mgoq-hjbopfcg-4t/ava/259152318/76373/EMLt_anet_qa_ttle/?hs=false&tok=1JiSyHyPLfvlQ1
+
+
+
+
+      <

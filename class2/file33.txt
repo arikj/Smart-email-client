@@ -1,0 +1,44 @@
+ACA and Programming Club are organizing the first WPC (Weekend Programming
+Contest) for this semester.
+
+
+Contest Description:  It is a 24 hours programming contest based on
+ACM-ICPC format containing 15 problems on various areas.
+
+Contest Time: August 17, 18:00 hrs (Saturday) to August 18, 18:00 hrs
+(Sunday).
+As this will be a team contest, you need to register your team on
+http://www2.cse.iitk.ac.in/judge/public/. Registration will begin on
+10:00 hrs on August 17.
+
+The link for the contest would be posted on the ACA Facebook page (
+https://www.facebook.com/aca.cse.iitk) and the Programming Club Facebook
+group (https://www.facebook.com/groups/pclubiitk) well before the contest.
+
+There will be prizes as well for top 3 teams.
+
+Hoping for an enthusiastic participation. Have fun coding !
+
+Regards,
+ACA and Programming Club
+
+http://www2.cse.iitk.ac.in/judge/public/
+https://www.facebook.com/aca.cse.iitk
+https://www.facebook.com/groups/pclubiitk/
+
+
+-- 
+Rudra Pratap Suman
+General Secretary,
+Science and Technology Council,
+Students' Gymkhana.
+Email: sntsecy@iitk.ac.in, rpsuman@iitk.ac.in
+Phone: +91-9450003098
+Council Webpage: http://students.iitk.ac.in/snt
+council FB page:- https://www.facebook.com/sntiitk
+
+'It's still magic even if you know how it's done'
+_______________________________________________
+students mailing list
+students@lists.iitk.ac.in
+http://lists.iitk.ac.in/mailman/listinfo/students

@@ -1,0 +1,215 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 32, Issue 29
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. Re: Where is the system call table in linux kernel v3.9?
+      (Valdis.Kletnieks@vt.edu)
+   2. Re: Is the Kernel Janitors project still alive?
+      (Valdis.Kletnieks@vt.edu)
+   3. Kernel Testing (was Re: Is the Kernel Janitors project still
+      alive?) (Arlie Stephens)
+   4. Re: Is the Kernel Janitors project still alive? (Greg Freemyer)
+   5. Re: Kernel Testing (was Re: Is the Kernel Janitors project
+      still	alive?) (Valdis.Kletnieks@vt.edu)
+   6. Re: Kernel Testing (was Re: Is the Kernel Janitors project
+      still alive?) (Philip Whitehouse)
+   7. Re: Kernel Testing (was Re: Is the Kernel Janitors project
+      still	alive?) (Arlie Stephens)
+   8. Re: Kernel Testing (was Re: Is the Kernel Janitors project
+      still	alive?) (Greg Freemyer)
+   9. Notifier chains (PV Juliet)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Thu, 18 Jul 2013 13:17:32 -0400
+From: Valdis.Kletnieks@vt.edu
+Subject: Re: Where is the system call table in linux kernel v3.9?
+To: Sudip Mukherjee <sudipm.mukherjee@gmail.com>
+Cc: kernelnewbies@kernelnewbies.org
+Message-ID: <3458.1374167852@turing-police.cc.vt.edu>
+Content-Type: text/plain; charset="us-ascii"
+
+On Thu, 18 Jul 2013 18:14:22 +0530, Sudip Mukherjee said:
+> Hi
+> In 3.10.1 the system call table is in arch/x86/syscalls/syscall_32.tbl
+
+Only for x86.  You're on an ARM or PowerPC or MIPS or any of the other 27
+or so architectures we support, it's elsewhere. ;)
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 865 bytes
+Desc: not available
+Url : http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130718/1a766505/attachment-0001.bin 
+
+------------------------------
+
+Message: 2
+Date: Thu, 18 Jul 2013 13:26:26 -0400
+From: Valdis.Kletnieks@vt.edu
+Subject: Re: Is the Kernel Janitors project still alive?
+To: Christopher Stanton <christopher.stanton@codaxus.com>
+Cc: kernelnewbies@kernelnewbies.org
+Message-ID: <3887.1374168386@turing-police.cc.vt.edu>
+Content-Type: text/plain; charset="us-ascii"
+
+On Thu, 18 Jul 2013 08:33:05 -0500, Christopher Stanton said:
+
+> Is there some live version of this project somewhere or has there been a
+> replacement? A unified list of needed but non-critical clean-ups? Or, is it
+> suggested people just look at bug reports?
+
+Janitors is pretty much deceased, for several reasons:
+
+1) Most of the low-hanging fruit that can be done by somebody who's just
+starting out has already been done.  The kernel tree is much cleaner than it
+was when the Janitors project started.
+
+2) There's fewer old APIs to clean up, as most subsystem maintainers require
+that a patch series that replaces an API also clean up the old one.
+
+3) For many subsystems, the maintainer will give some pushback for style
+cleanup patches not part of actual development, for two reasons:  (a) it's
+possible for a cleanup patch to break something (for instance, a bad cleanup
+of curly brackets can change the control flow).  So they don't like patches
+against old stable code that could destabilize it.  (b) If there *is* other
+development going on, style cleanups cause merge conflicts (unless they're
+done as Step 0 of a development patch, by the guy writing the code, so
+all the conflicts are pre-resolved).
+
+A good place to start is to just use git to suck down the current linux-next
+tree, build it, run it, and report all problems you encounter. Most code only
+gets tested on the 3-4 boxes the code author has access to before it gets into
+the linux-next tree. I usually manage to trip over anywhere from 1 to 5 bugs
+per kernel release, just because nobody else has actually tried running the
+code on a Dell Latitude with the same .config as I have and the same workflow.
+
+If anything, we need a good pool of kernel testers even more than we need more
+kernel coders. (And you'll learn a ton that way too - some 95% of what I know
+about kernel innards has come from "Oh crud, what did I break *this* time?"
+investigation...
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 865 bytes
+Desc: not available
+Url : http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130718/435e9f67/attachment-0001.bin 
+
+------------------------------
+
+Message: 3
+Date: Thu, 18 Jul 2013 10:58:36 -0700
+From: Arlie Stephens <arlie@worldash.org>
+Subject: Kernel Testing (was Re: Is the Kernel Janitors project still
+	alive?)
+To: kernelnewbies@kernelnewbies.org
+Cc: Valdis.Kletnieks@vt.edu
+Message-ID: <20130718175836.GA20722@worldash.org>
+Content-Type: text/plain; charset=us-ascii
+
+On Jul 18 2013, Valdis.Kletnieks@vt.edu wrote:
+[snip, snip, snip]
+> A good place to start is to just use git to suck down the current linux-next
+> tree, build it, run it, and report all problems you encounter. Most code only
+> gets tested on the 3-4 boxes the code author has access to before it gets into
+> the linux-next tree. I usually manage to trip over anywhere from 1 to 5 bugs
+> per kernel release, just because nobody else has actually tried running the
+> code on a Dell Latitude with the same .config as I have and the same
+> workflow.
+
+One of the things I really miss in the open source kernel world
+(coming from the commercial world) is the lack of test packages that
+everyone automatically runs, just in case they broke
+something. FreeBSD had nothing, AFAICT, with occassional painful
+results.  
+
+Does the linux kernel have any kind of regression test package? If so,
+where can I find it? If not, does anyone know of ongoing attempts to
+create one?
+
+A quick web search gave me a few pointers to attempts at this:
+
+pdf about a regression test framework:
+  https://www.kernel.org/doc/ols/2007/ols2007v2-pages-285-296.pdf
+  
+A project called crackerjack:
+  http://sourceforge.net/projects/crackerjack/
+
+A paper from a 2008 linux symposium:
+
+   http://ols.fedoraproject.org/OLS/Reprints-2008/babulal-reprint.pdf
+
+What I don't see is any kind of definitive answer - as in, "just clone
+this git repo and build/run it". And the bug reports I see discussed
+tend to come from people trying to use linux to accomplish real work. 
+
+So is there something current, live, and useful? 
+
+> 
+> If anything, we need a good pool of kernel testers even more than we need more
+> kernel coders. (And you'll learn a ton that way too - some 95% of what I know
+> about kernel innards has come from "Oh crud, what did I break *this* time?"
+> investigation...
+> 
+
+--
+Arlie
+
+Arlie Stephens					arlie@worldash.org
+
+
+
+------------------------------
+
+Message: 4
+Date: Thu, 18 Jul 2013 13:50:12 -0400
+From: Greg Freemyer <greg.freemyer@gmail.com>
+Subject: Re: Is the Kernel Janitors project still alive?
+To: Valdis.Kletnieks@vt.edu
+Cc: Christopher Stanton <christopher.stanton@codaxus.com>,
+	kernelnewbies@kernelnewbies.org
+Message-ID:
+	<CAGpXXZJYjNU-tEfQurRAyr-Czu75BOk+Wd6b4xZ1zaFUnFgBbg@mail.gmail.com>
+Content-Type: text/plain; charset=ISO-8859-1
+
+On Thu, Jul 18, 2013 at 1:26 PM,  <Valdis.Kletnieks@vt.edu> wrote:
+> On Thu, 18 Jul 2013 08:33:05 -0500, Christopher Stanton said:
+>
+>> Is there some live version of this project somewhere or has there been a
+>> replacement? A unified list of needed but non-critical clean-ups? Or, is it
+>> suggested people just look at bug reports?
+>
+> Janitors is pretty much deceased, for several reasons:
+>
+
+What's the status of "The Linux Driver Project"
+
+http://www.linuxdriverproject.org/mediawiki/index.php/Main_Page
+
+If it's still active, it has a list of devices in need of drivers to be written.
+
+Also, I should add the Kingwin USI-2535U3 USB3 / Sata adapter I bought
+a few months ago.
+
+http://www.ramplus.com/uskiusb30tos.

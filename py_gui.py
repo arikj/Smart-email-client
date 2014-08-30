@@ -1,7 +1,7 @@
 from Tkinter import *
 from yahoo import *
 import time
-
+import os
 #global vars
 mail_id="test start";
 selected_folder="INBOX";
@@ -52,17 +52,19 @@ def onselect(evt):
 	area.delete("1.0",END)
 	for i in range(0,num_folders):
 		try:
-			if mail_header[folders[i]][index]==value:
+			if str(mail_header[folders[i]][index])==str(value):
 				name_folder=folders[i]
+				break
 		except:
 			pass
-	
-	filename = str(name_folder)+str(index+1)
-	f=open(filename,'r')
-	data_body = []
-	for line in f:
-		area.insert(END,line)
-
+	try:
+		filename = str(name_folder)+str(index+1)
+		path='class_new'+str(i)+'/'+filename; 
+		f=open(path).readlines()
+		for line in f:
+			area.insert(END,line)
+	except:
+		pass;
 right_bottom = Frame(tk, height=400, width=1200)
 right_bottom.pack(expand=True, fill=BOTH)
 right_bottom.config(background="#ECF9FF")

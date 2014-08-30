@@ -1,0 +1,69 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 32, Issue 12
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. Re: Rebuild a changed kernel quickly with make?
+      (Valdis.Kletnieks@vt.edu)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Tue, 09 Jul 2013 10:21:08 -0400
+From: Valdis.Kletnieks@vt.edu
+Subject: Re: Rebuild a changed kernel quickly with make?
+To: Srinivas Ganji <srinivasganji.kernel@gmail.com>
+Cc: Martin Kepplinger <martink@posteo.de>,
+	kernelnewbies@kernelnewbies.org
+Message-ID: <36108.1373379668@turing-police.cc.vt.edu>
+Content-Type: text/plain; charset="us-ascii"
+
+On Tue, 09 Jul 2013 13:16:53 +0530, Srinivas Ganji said:
+
+> You can pass the name of the target to the make for building only the
+> specified files and objects. Suppose, if I changed some modifications in
+> storage files, then I need to do make as shown below, from the top level
+> directory i.e. /usr/src/<linux-kernel>/
+>
+> make M=drivers/usb/storage
+>
+> I hope this helps to you. I got the same problem earlier and I fixed like
+> this.
+
+This is good for testing, but do *not* bet on this producing a working kernel.
+It's possible to build a module that doesn't match the rest of
+your kernel, resulting in hard-to-debug oopses.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 865 bytes
+Desc: not available
+Url : http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130709/f9ecbab1/attachment-0001.bin 
+
+------------------------------
+
+_______________________________________________
+Kernelnewbies mailing list
+Kernelnewbies@kernelnewbies.org
+http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+
+
+End of Kernelnewbies Digest, Vol 32, Issue 12
+*********************************************

@@ -1,0 +1,360 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 31, Issue 14
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. any value in "pci_request_region_exclusive()" routine?
+      (Robert P. J. Day)
+   2. Re: printk and kernel log (Valdis.Kletnieks@vt.edu)
+   3. Re: Filesystem and files getting corrupted (Manish Katiyar)
+   4. Re: File system query (Valdis.Kletnieks@vt.edu)
+   5. Re: Filesystem and files getting corrupted
+      (Valdis.Kletnieks@vt.edu)
+   6. File-system driver issue (Saket Sinha)
+   7. Re: File-system driver issue (Rohan Puri)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Tue, 25 Jun 2013 07:22:06 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Subject: any value in "pci_request_region_exclusive()" routine?
+To: Kernel Newbies <kernelnewbies@kernelnewbies.org>
+Message-ID: <alpine.DEB.2.02.1306240850590.23338@oneiric>
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+
+  poking around in memory allocation code and ran across this in
+drivers/pci/pci.c. first, there's this generic region request routine
+that accepts a final parameter as to whether it's an "exclusive"
+request:
+
+static int __pci_request_region(struct pci_dev *pdev, int bar, const char *res_name,
+int exclusive)
+{
+        struct pci_devres *dr;
+        ...
+
+and, not surprisingly, there are a couple more user-friendly routines
+that wrap around it:
+
+int pci_request_region(struct pci_dev *pdev, int bar, const char *res_name)
+{
+        return __pci_request_region(pdev, bar, res_name, 0);
+}
+... snip ...
+int pci_request_region_exclusive(struct pci_dev *pdev, int bar, const char *res_name)
+{
+        return __pci_request_region(pdev, bar, res_name, IORESOURCE_EXCLUSIVE);
+}
+
+  the above would normally suggest that, since the generic routine's
+name begins with "__", it's typically a lower-level routine that
+wouldn't be called directly, and one would expect to see calls to the
+wrapper routines:
+
+* pci_request_reqion()
+* pci_request_region_exclusive()
+
+scattered throughout the kernel source tree.
+
+  there are certainly enough calls to the first (non-exclusive)
+routine, but this is it for the second:
+
+$ grep -rw pci_request_region_exclusive *
+drivers/pci/pci.c: *	pci_request_region_exclusive - Reserved PCI I/O and memory resource
+drivers/pci/pci.c:int pci_request_region_exclusive(struct pci_dev *pdev, int bar, const char *res_name)
+drivers/pci/pci.c:EXPORT_SYMBOL(pci_request_region_exclusive);
+include/linux/pci.h:int __must_check pci_request_region_exclusive(struct pci_dev *, int, const char *);
+$
+
+  in short, *nobody* appears to call that second routine for exclusive
+access. am i missing something here? if you search for calls to the
+generic routine, this is all you find:
+
+$ grep -rw __pci_request_region *
+drivers/pci/pci.c: *	__pci_request_region - Reserved PCI I/O and memory resource
+drivers/pci/pci.c:static int __pci_request_region(struct pci_dev *pdev, int bar, const char *res_name,
+drivers/pci/pci.c:	return __pci_request_region(pdev, bar, res_name, 0);
+drivers/pci/pci.c:	return __pci_request_region(pdev, bar, res_name, IORESOURCE_EXCLUSIVE);
+drivers/pci/pci.c:			if (__pci_request_region(pdev, i, res_name, excl))
+$
+
+  so what's the value of that "exclusive" wrapper routine?
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
+
+
+------------------------------
+
+Message: 2
+Date: Tue, 25 Jun 2013 11:07:07 -0400
+From: Valdis.Kletnieks@vt.edu
+Subject: Re: printk and kernel log
+To: Kevin Wilson <wkevils@gmail.com>
+Cc: Mulyadi Santosa <mulyadi.santosa@gmail.com>,
+	kernelnewbies@kernelnewbies.org
+Message-ID: <199627.1372172827@turing-police.cc.vt.edu>
+Content-Type: text/plain; charset="us-ascii"
+
+On Tue, 25 Jun 2013 12:04:08 +0300, Kevin Wilson said:
+> Hi,
+> You are right, thanks!
+> disabling CONFIG_PRINTK_TIME prevented this timestamps.
+>
+> I believe they should have provide some sysfs entry for this, sorry
+> they did not do so
+
+Well actually, there's a boot-time cmdline parameter:
+
+        printk.time=    Show timing data prefixed to each printk message line
+                        Format: <bool>  (1/Y/y=enable, 0/N/n=disable)
+
+And since the code that handles it treats it as a module parameter (even though
+it's always builtin), you get this for free:
+
+% ls -l /sys/module/printk/parameters
+total 0
+-rw-r--r--. 1 root root 4096 Jun 25 11:05 always_kmsg_dump
+-rw-r--r--. 1 root root 4096 Jun 25 11:05 console_suspend
+-rw-r--r--. 1 root root 4096 Jun 25 11:05 ignore_loglevel
+-rw-r--r--. 1 root root 4096 Jun 25 11:05 time
+
+So save yourselves the embarassment of submitting a patch to add it. ;)
+
+
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 865 bytes
+Desc: not available
+Url : http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130625/c5601f89/attachment-0001.bin 
+
+------------------------------
+
+Message: 3
+Date: Tue, 25 Jun 2013 07:52:39 -0700
+From: Manish Katiyar <mkatiyar@gmail.com>
+Subject: Re: Filesystem and files getting corrupted
+To: Daniel Hilst Selli <danielhilst@gmail.com>
+Cc: kernelnewbies <kernelnewbies@kernelnewbies.org>
+Message-ID:
+	<CAE0An6cMhukgCZ9VgnQEBqzM303bAiYyS_YOYvLRFscTaOEpAg@mail.gmail.com>
+Content-Type: text/plain; charset=ISO-8859-1
+
+On Mon, Jun 24, 2013 at 1:08 PM, Daniel Hilst Selli
+<danielhilst@gmail.com> wrote:
+> I'm working on an embedded project based on var-som-am35 from TI. [1]
+>
+> I experiencing a lot of corruption from files and even the entire
+> filesystem... is there any guide on how debug filesystems corruption?
+>
+> We already tryied vfat and ext3 fs.. changed media, changed machines...
+
+If both the filesystems are getting corrupted, there is a high chance
+that it doesn't have to do anything with filesystem per se. There may
+be some random module which is corrupting incore memory/structures,
+and debugging that doesn't involve knowing filesystems specifics. To
+find the culprit, you may have to identify the interesting things
+related to corruption and narrow it down. Some things that can help
+are :-
+
+a) Is the corruption always happening at some particular offset of
+page or on some specific filesystem metadata
+b) What does the corruption look like, do structures get zeroed or get
+filled with some value ? If its some particular address you can try
+gdb watchpoints
+c) What is the size of corruption. How much garbage is there.
+Answering this will give you some hint about the structure which is
+overwriting
+
+
+> The filesystem runs on mmc card, or on usb flash drive... There is a
+> java aplication running on top of this filesystem, which uses JMS, that
+> is very I/O agressive..
+>
+> Cheers,
+>
+> _______________________________________________
+> Kernelnewbies mailing list
+> Kernelnewbies@kernelnewbies.org
+> http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+
+
+
+--
+Thanks -
+Manish
+
+
+
+------------------------------
+
+Message: 4
+Date: Tue, 25 Jun 2013 11:19:23 -0400
+From: Valdis.Kletnieks@vt.edu
+Subject: Re: File system query
+To: Alexandru Juncu <alexj@rosedu.org>
+Cc: Dibyayan Chakraborty <dib.coolguy@gmail.com>,	kernelnewbies
+	<kernelnewbies@kernelnewbies.org>
+Message-ID: <200109.1372173563@turing-police.cc.vt.edu>
+Content-Type: text/plain; charset="us-ascii"
+
+On Tue, 25 Jun 2013 09:56:43 +0300, Alexandru Juncu said:
+> On 23 June 2013 17:18, Dibyayan Chakraborty <dib.coolguy@gmail.com> wrote:
+> > Hi,
+> > I came by a really weird macro code in linux/jbd.h which is
+> >
+> > BUFFER_TRACE(bh,info)  do{} while(0).
+> >
+> > Please explain the necessity of this.
+>
+> I'm not familiar with that specific code, but it looks like a "no op"
+> macro. Maybe the definition is the to ensure backwards or forward
+> compatibility for the code that calls the macro , but now it doesn't
+> do anything.
+
+Actually, the kernel doesn't use this for forward/backward compatability
+that much.  It's mostly used for handling optional code - you'll often
+find stuff like this in .h files:
+
+#ifdef CONFIG_FOOBAR_DEBUG
+#define MY_TRACE printk(lots-o-oarams-here)
+#else
+#define MY_TRACE() do{} while(0)
+#endif
+
+That way, the main .c file will compile cleanly whether or not the CONFIG
+option is selected.
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 865 bytes
+Desc: not available
+Url : http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130625/107ccdb6/attachment-0001.bin 
+
+------------------------------
+
+Message: 5
+Date: Tue, 25 Jun 2013 12:02:41 -0400
+From: Valdis.Kletnieks@vt.edu
+Subject: Re: Filesystem and files getting corrupted
+To: meccomaria@gmail.com
+Cc: Daniel Hilst Selli <danielhilst@gmail.com>,
+	kernelnewbies@kernelnewbies.org
+Message-ID: <202527.1372176161@turing-police.cc.vt.edu>
+Content-Type: text/plain; charset="us-ascii"
+
+On Tue, 25 Jun 2013 12:28:15 +0200, meccomaria@gmail.com said:
+> I'm really newbie and I don't know if this may help at all, but I googled
+> "corruption of the file system debug" and found
+> http://linux.die.net/man/8/debugfs
+
+That won't help you debug a filesystem - debugfs is *itself* a pseudo-filesystem
+that allows kernel programmers to import/export large amounts of debugging
+info from the kernel - it was created because there are some restrictions
+in the procfs (for /proc) and sysfs (for /sys) filesystems that make them not
+very useful for bulk data.
+
+Most distros mount debugfs at /sys/kernel/debug - so everything under that
+is handled by debugfs rather than sysfs.
+
+For Daniel's original question:
+
+> We already tryied vfat and ext3 fs.. changed media, changed machines...
+> The filesystem runs on mmc card, or on usb flash drive...
+
+This tends to indicate that the problem is *not* a filesystem issue - you're
+just *noticing* corruption of your filesystem by some *other* kernel code.
+
+I'd rebuild the kernel, and turn on every kernel debugging option related to
+memory management you can find under the 'Kernel Hacking' menu.  In particular,
+you want CONFIG_DEBUG_SLAB and also CONFIG_DEBUG_STACKOVERFLOW.  Also, many
+kernel subsystems have debugging code for themselves, you may want to turn
+on as many of them as you can.
+
+Also, Manish Katiyar <mkatiyar@gmail.com> had some good suggestions to help
+narrow down the problem.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 865 bytes
+Desc: not available
+Url : http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130625/f32122b9/attachment-0001.bin 
+
+------------------------------
+
+Message: 6
+Date: Wed, 26 Jun 2013 01:44:11 +0530
+From: Saket Sinha <saket.sinha89@gmail.com>
+Subject: File-system driver issue
+To: kernelnewbies@kernelnewbies.org
+Message-ID:
+	<CAK25hWN52z+0qtHBTYf9ijnTbsQKj5XrpruzLN=SCvZ4Ga0H7Q@mail.gmail.com>
+Content-Type: text/plain; charset="iso-8859-1"
+
+I have to port a driver from 2.6.18 to 3.8.3
+
+Look at the below declaration of current
+http://lxr.free-electrons.com/source/scripts/kconfig/gconf.c#L62
+Where struct menu is
+http://lxr.free-electrons.com/source/scripts/kconfig/expr.h#L159
+
+The above one is in kconfig while the lower one is in the kernel. So would
+they be able to affect each other? I guess NO
+
+NOW in the driver to be ported-
+current is defined as:
+struct task_struct *task = current;
+
+but is still able to excess  the field members of task_struct
+ http://lxr.linux.no/linux+v2.6.18/include/linux/sched.h#L767
+like
+attr.ia_uid = current->uid;
+attr.ia_gid = current->gid;
+
+though it has not been initialized or assigned or typecasted to this
+task_struct.
+HOW?
+
+I searched on the entire lxr but could not find the solution.
+Kindly help.
+PS: This driver is built on 2.6.28 kernel so use lxr from 2.6.18 kernel
+only like
+ http://lxr.linux.no/linux+v2.6.18/<http://lxr.linux.no/linux+v2.6.18/include/linux/sched.h#L767>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130626/d0803a19/attachment-0001.

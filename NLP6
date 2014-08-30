@@ -1,0 +1,29 @@
+Hi,
+
+Some people have rightly pointed out that some of the words in the 
+word-lists that we have given includes some words not found in the 
+heliohost Hindi corpus. This is has happened because I was discarding 
+non-Indic characters while processing the text and some words which were 
+sperated by a hyphen or a slash or other such characters got merged into 
+one word.
+
+If you observe that any words present in the list given to you are not 
+present in the corpus, you can either fix such words manually or just 
+discard them and work only with the remaining words in the list.
+
+Sorry for the inconvenience and thanks to Prashant and Mohit for 
+pointing out the issue.
+
+Regards,
+Ram
+
+-- 
+
+M Seetha Ramaiah,
+PhD Student, CS213,
+Computer Science and Engineering,
+Indian Institute of Technology Kanpur,
+INDIA.
+
+Homepage: http://www.cse.iitk.ac.in/users/msram/
+

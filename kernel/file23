@@ -1,0 +1,61 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 32, Issue 21
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. Re: Inline Macro issue (Mandeep Sandhu)
+   2. Re: Inline Macro issue (Saket Sinha)
+   3. RE: Kernelnewbies Digest, Vol 32, Issue 20 (Murali Annamneni)
+   4. Re: Inline Macro issue (Mandeep Sandhu)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Mon, 15 Jul 2013 17:07:49 +0530
+From: Mandeep Sandhu <mandeepsandhu.chd@gmail.com>
+Subject: Re: Inline Macro issue
+To: Saket Sinha <saket.sinha89@gmail.com>
+Cc: Anish Singh <anish198519851985@gmail.com>,	Srinivas Ganji
+	<srinivasganji.kernel@gmail.com>,	kernelnewbies
+	<kernelnewbies@kernelnewbies.org>
+Message-ID:
+	<CAC+QLdQ5ECf6y71zOpi=FCjhHS_S8OEJ-qvqj1SUxH7844TbhQ@mail.gmail.com>
+Content-Type: text/plain; charset="iso-8859-1"
+
+On Mon, Jul 15, 2013 at 4:50 PM, Saket Sinha <saket.sinha89@gmail.com>wrote:
+
+> Mandip:
+> Error is expected error or declaration at the end of input
+>
+
+Without looking at the code, it's difficult to comment further.
+
+Can you attach a small compilable example which exhibits the error?
+
+-mandeep
+
+
+
+> Anish:
+> that '\' should not be there first of all and even if I put it same error
+>
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130715/17f8e646/attachment-0001.

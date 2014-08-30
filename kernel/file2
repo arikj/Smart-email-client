@@ -1,0 +1,136 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 31, Issue 11
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. Re: On creation of irq_desc and irq_data. (mind entropy)
+   2. Re: File system query (Dibyayan Chakraborty)
+   3. Re: On creation of irq_desc and irq_data. (Subhra S. Sarkar)
+   4. Re: File system query (Valdis.Kletnieks@vt.edu)
+   5. Re: File system query (Dibyayan Chakraborty)
+   6. Re: File system query (Valdis.Kletnieks@vt.edu)
+   7. some questions/oddities regarding "exclusive" wait queues
+      (Robert P. J. Day)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Thu, 20 Jun 2013 23:45:48 +0530
+From: mind entropy <mindentropy@gmail.com>
+Subject: Re: On creation of irq_desc and irq_data.
+To: kernelnewbies@kernelnewbies.org
+Message-ID:
+	<CAM2a4uw5akKiQJXH3QKdyWoR1Y=4FkD=4dR1z56GJbM7eZ6DrQ@mail.gmail.com>
+Content-Type: text/plain; charset=ISO-8859-1
+
+> Hi,
+>
+>   I am reading through mini2440 code. I am going through the init_irq
+> (http://lxr.free-electrons.com/source/arch/arm/mach-s3c24xx/mach-mini2440.c#L689)
+> code. In it (http://lxr.free-electrons.com/source/arch/arm/mach-s3c24xx/irq.c#L446)
+> there is irq_domain_add_legacy(..) which references irq_desc and
+> irq_data. I am not sure where these descriptors are created? In the
+> irq_domain_add_legacy there is a lookup for irq_data from the number.
+> Could someone tell where these descriptors are created?
+>
+> Thanks.
+
+I think it is statically created here
+https://github.com/torvalds/linux/blob/master/kernel/irq/irqdesc.c#L243
+and the initialization happens in early_irq_init(..) here
+https://github.com/torvalds/linux/blob/master/kernel/irq/irqdesc.c#L251.
+
+Please correct me if I am wrong.
+
+Thanks.
+
+
+
+------------------------------
+
+Message: 2
+Date: Fri, 21 Jun 2013 07:06:37 +0530
+From: Dibyayan Chakraborty <dib.coolguy@gmail.com>
+Subject: Re: File system query
+To: Rohan Puri <rohan.puri15@gmail.com>
+Cc: kernelnewbies <kernelnewbies@kernelnewbies.org>
+Message-ID:
+	<CAOc=eMO-QNv+63q=EWz6JKegoHM1XTcoBS7WHruLpSaRhEznwg@mail.gmail.com>
+Content-Type: text/plain; charset="iso-8859-1"
+
+Hi,
+I have been following the prescribed articles and it has been a great help.
+
+I am obviously one step closer to implementing the journaling in file
+system. But i didn't et the following things.
+
+What would be the correct sequence of steps in implementing it ? is it
+something like this ?
+1. At the time of filling super block the journal blocks are initialised.
+2. If that is successfull all subsequent operations will be done using
+transactions. Which starts using journal_start() and journal_stop().
+
+But thats all i could figure out.  Please help me with this.
+
+
+
+On Tue, Jun 18, 2013 at 11:24 AM, Rohan Puri <rohan.puri15@gmail.com> wrote:
+
+> On Tue, Jun 18, 2013 at 12:19 AM, Dibyayan Chakraborty
+> <dib.coolguy@gmail.com> wrote:
+> > Hi,
+> > I am working on a project which requires to implement a file system with
+> > journaling capability.
+> >
+> > While i found a number of simple implementations of file systems , they
+> all
+> > were lacking the journaling capability.
+> > like https://github.com/raczzoli/testfs or
+> > http://hi.baidu.com/yanyulou/item/e31a15f3b559ae49932af287
+> >
+> > Now that i have implemented the formating procedures for the file system
+> i
+> > think the next step would be to implement super_block operations , file
+> > operations for the VFS.
+> >
+> > I came to know that ext3/ext4 uses a jbd interface which implements the
+> > journaling capability in a file system independent way. But i could not
+> > find any documentation or details for using the jbd interface.
+> >
+> > So, any help which points out to the specific details of jbd interface or
+> > any comments which might be helpful in implementing the journaling
+> > capability is welcome.
+> >
+> >
+> > --
+> > With Regards
+> > Dibyayan Chakraborty
+> >
+> > _______________________________________________
+> > Kernelnewbies mailing list
+> > Kernelnewbies@kernelnewbies.org
+> > http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+> >
+> Hi Dibyayan,
+>
+> Manish has written a nice article explaining jbd iinterfaces
+> implementation of ext3, explains in detail,
+>
+> Link
+> http://www.linuxforums.org/articles/journalling-block-device-jbd-_1544.

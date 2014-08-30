@@ -1,0 +1,35 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 32, Issue 5
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. Re: Filesystem and files getting corrupted (Peter Teoh)
+   2. Rebuild a changed kernel quickly with make? (Martin Kepplinger)
+   3. RE: Rebuild a changed kernel quickly with make?
+      (Warlich, Christof)
+   4. local_irq_save vs raw_local_irq_save (Raj Ravi)
+   5. Re: local_irq_save vs raw_local_irq_save (anish singh)
+   6. Re: Rebuild a changed kernel quickly with make? (David kiarie)
+   7. Re: local_irq_save vs raw_local_irq_save (Raj Ravi)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Thu, 4 Jul 2013 08:24:44 +0800
+From: Peter Teoh <

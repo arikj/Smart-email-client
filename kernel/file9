@@ -1,0 +1,190 @@
+Receiver: kernelnewbies@kernelnewbies.org
+Sender: ('', 'kernelnewbies-request@kernelnewbies.org')
+Subject:Kernelnewbies Digest, Vol 32, Issue 40
+Body: Send Kernelnewbies mailing list submissions to
+	kernelnewbies@kernelnewbies.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
+or, via email, send a message with subject or body 'help' to
+	kernelnewbies-request@kernelnewbies.org
+
+You can reach the person managing the list at
+	kernelnewbies-owner@kernelnewbies.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of Kernelnewbies digest..."
+
+
+Today's Topics:
+
+   1. Re: preemptive kernels and the use of smp_processor_id()
+      (Valdis.Kletnieks@vt.edu)
+   2. RE: preemptive kernels and the use of smp_processor_id()
+      (Rajat Jain)
+   3. RE: preemptive kernels and the use of smp_processor_id()
+      (Rajat Jain)
+   4. pulling in patches mentioned in mails
+      (linux-kernel@vger.kernel.org) (kernel neophyte)
+   5. pulling in patches mentioned in mails
+      (linux-kernel@vger.kernel.org) (kernel neophyte)
+   6. Re: Need help to understand system calls (Mulyadi Santosa)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Wed, 24 Jul 2013 15:04:29 -0400
+From: Valdis.Kletnieks@vt.edu
+Subject: Re: preemptive kernels and the use of smp_processor_id()
+To: Rajat Jain <rajatjain@juniper.net>
+Cc: Christian Parpart <trapni@gmail.com>,
+	"kernelnewbies@kernelnewbies.org" <kernelnewbies@kernelnewbies.org>
+Message-ID: <9197.1374692669@turing-police.cc.vt.edu>
+Content-Type: text/plain; charset="us-ascii"
+
+On Wed, 24 Jul 2013 18:52:40 -0000, Rajat Jain said:
+
+> I though preemptible only means that a process can only be preempted (not
+> moved to another core) under following situations:
+
+> 1) An interrupt happens (In case of timer, it could put the process back in queue if its time slice expired).
+
+Actually, in case of any interrupt, be it timer or I/O or NMI or whatever.
+
+> 2) The process goes to sleep (can be a result of a call that can sleep).
+
+And there's no actual guarantee that when the process gets rescheduled, that
+you'll return to the same core you were on.
+
+> Can some one shed light on what conditions would a running process be moved to another core?
+
+Pretty much anytime the scheduler comes to that decision. :)
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 865 bytes
+Desc: not available
+Url : http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130724/d493fd2c/attachment-0001.bin 
+
+------------------------------
+
+Message: 2
+Date: Wed, 24 Jul 2013 19:09:43 +0000
+From: Rajat Jain <rajatjain@juniper.net>
+Subject: RE: preemptive kernels and the use of smp_processor_id()
+To: "Valdis.Kletnieks@vt.edu" <Valdis.Kletnieks@vt.edu>
+Cc: Christian Parpart <trapni@gmail.com>,
+	"kernelnewbies@kernelnewbies.org" <kernelnewbies@kernelnewbies.org>
+Message-ID:
+	<C33A99BAC16CE247A30D76921F1378BB152CA644@BL2PRD0512MB629.namprd05.prod.outlook.com>
+	
+Content-Type: text/plain; charset="us-ascii"
+
+Hi Valdis,
+
+Understood.
+
+>> I though preemptible only means that a process can only be preempted 
+>> (not moved to another core) under following situations:
+
+>> 1) An interrupt happens (In case of timer, it could put the process back in queue if its time slice expired).
+
+>Actually, in case of any interrupt, be it timer or I/O or NMI or whatever.
+
+So, essentially a scheduler can kick in while returning from ANY sort of interrupt (and not just timer interrupt), right?
+
+Thanks,
+
+Rajat
+
+
+
+
+
+------------------------------
+
+Message: 3
+Date: Wed, 24 Jul 2013 18:52:40 +0000
+From: Rajat Jain <rajatjain@juniper.net>
+Subject: RE: preemptive kernels and the use of smp_processor_id()
+To: "Valdis.Kletnieks@vt.edu" <Valdis.Kletnieks@vt.edu>, Christian
+	Parpart	<trapni@gmail.com>
+Cc: "kernelnewbies@kernelnewbies.org"
+	<kernelnewbies@kernelnewbies.org>
+Message-ID:
+	<C33A99BAC16CE247A30D76921F1378BB152CA460@BL2PRD0512MB629.namprd05.prod.outlook.com>
+	
+Content-Type: text/plain; charset="us-ascii"
+
+Hi,
+
+>> So it seems the kernel module I am porting assumed to always run on 
+>> the same CPU core once entered kernelspace, but on a preemptive system 
+>> you cannot guarantee that.
+
+> Correct.  You probably want to fix the assumption(s) in the kernel module,
+> that's in the long term probably easier than trying to make it work otherwise
+
+Uh, are we saying that once a process (say running on core-0) has entered preemptible kernel , there is a chance that suddenly the scheduler might decide it to move to core-1? I though preemptible only means that a process can only be preempted (not moved to another core) under following situations:
+
+1) An interrupt happens (In case of timer, it could put the process back in queue if its time slice expired).
+2) The process goes to sleep (can be a result of a call that can sleep).
+
+Can some one shed light on what conditions would a running process be moved to another core?
+
+Thanks,
+
+rajat
+
+
+
+
+
+------------------------------
+
+Message: 4
+Date: Wed, 24 Jul 2013 19:50:12 -0700
+From: kernel neophyte <neophyte.hacker001@gmail.com>
+Subject: pulling in patches mentioned in mails
+	(linux-kernel@vger.kernel.org)
+To: kernelnewbies@kernelnewbies.org
+Message-ID:
+	<CAFkUHxcewUf_bu4Ou8kiVJvL1fL6KdR4tiqFCjDUqOZNp8M4FA@mail.gmail.com>
+Content-Type: text/plain; charset="iso-8859-1"
+
+Hi,
+
+I am sorry if this has been asked before, I tried to look around but did
+not get an solution and hence the mail.
+
+In this mail from Mel Gorman:
+
+https://lkml.org/lkml/2013/7/15/362
+
+He mentions a set of patches:
+
+https://lkml.org/lkml/2013/7/15/292
+
+https://lkml.org/lkml/2013/7/15/383
+
+https://lkml.org/lkml/2013/7/15/322
+
+Could someone please teach me
+
+1) how do I find out where is the tree he is working on (i.e. is he working
+on linux-next or ... )
+2) Where do I find these patches mentioned ? Currently I cut copy paste in
+a vim manually and its really frustrating, could some one please point out
+the right way of pulling these patches. via git ?
+
+Thanks a lot for your time in advance.
+
+-Neophyte
+
+PS: This is my first ever mail in public, please pardon my grammatical
+errors or choice of words.
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://lists.kernelnewbies.org/pipermail/kernelnewbies/attachments/20130724/23b3978e/attachment-0001.
