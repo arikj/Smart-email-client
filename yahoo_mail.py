@@ -26,8 +26,8 @@ def parse_uid(data):
     
     
 #setting proxy connection
-proxy = urllib2.ProxyHandler({'https': 'http://shahak:karan107@ironport2.iitk.ac.in:3128',
-			      'http': 'http://shahak:karan107@ironport2.iitk.ac.in:3128'})
+proxy = urllib2.ProxyHandler({'https': 'http://username:password@ironport2.iitk.ac.in:3128',
+			      'http': 'http://username:password@ironport2.iitk.ac.in:3128'})
 auth = urllib2.HTTPBasicAuthHandler()
 opener = urllib2.build_opener(proxy, auth, urllib2.HTTPHandler,urllib2.HTTPSHandler,urllib2.HTTPRedirectHandler)
 urllib2.install_opener(opener)
@@ -41,7 +41,7 @@ hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML,
        'Connection': 'keep-alive'}
 
 mail = imaplib.IMAP4_SSL('imap.gmail.com')
-mail.login('garg.javesh@gmail.com', 'judge5793')
+mail.login('username@gmail.com', 'password')
 
 folders = [folder.split(' "/" ')[1][1:-1] for folder in mail.list()[1]]	
 
